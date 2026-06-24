@@ -1,0 +1,116 @@
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script>
+    const topics = [
+  { title: "About Our Unit", url: "about.html" },
+  { title: "สาขาวิชาโรคติดเชื้อ", url: "infectious-division.html" },
+  { title: "ศูนย์...วิชาโรคติดเชื้อ", url: "center-infectious.html" },
+  { title: "เว็บไซต์ที่เกี่ยวข้อง", url: "related-links.html" },
+
+  // Infection categories
+  { title: "Bacterial infections", url: "bacterial.html" },
+  { title: "Mycobacterial infectious", url: "mycobacterial.html" },
+  { title: "Viral infection", url: "viral.html" },
+  { title: "Fungal infectious", url: "fungal.html" },
+  { title: "Parasitic infectious", url: "parasitic.html" },
+  { title: "Other/Unusual infectious", url: "other-infectious.html" },
+
+  // Educational & content
+  { title: "Case Study", url: "case-study.html" },
+  { title: "Guideline", url: "guideline.html" },
+  { title: "Medical content", url: "medical-content.html" },
+  { title: "ความรู้.....", url: "knowledge.html" },
+  { title: "INTERESTING", url: "interesting.html" },
+
+  // Hot topics
+  { title: "Hot Topic1", url: "hot-topic-1.html" },
+  { title: "Hot Topic2", url: "hot-topic-2.html" },
+  { title: "Hot Topic3", url: "hot-topic-3.html" },
+
+  // News
+  { title: "PED CMU NEWS 1", url: "news1.html" },
+  { title: "PED CMU NEWS 2", url: "news2.html" },
+  { title: "PED CMU NEWS 3", url: "news3.html" },
+
+  // Research
+  { title: "Research Overview", url: "research-overview.html" },
+  { title: "Ongoing Project", url: "ongoing-project.html" },
+  { title: "Publication", url: "publication.html" },
+
+  // Interactive items
+  { title: "PHOTO QUIZ", url: "photo-quiz.html" },
+  { title: "quiz", url: "quiz.html" },
+
+  // Pages
+  { title: "TOPIC", url: "topic.html" },
+  { title: "ทำความรู้จักกับสาขาวิชาโรคติดเชื้อ", url: "about-infectious.html" },
+  { title: "รายชื่อบุคลากร", url: "personnel.html" },
+  { title: "Contact Us", url: "contact.html" },
+  { title: "EVENT", url: "event.html" },
+
+  // Account
+  { title: "Login/Register Popup", url: "login.html" },
+
+  // Training
+  { title: "Training / Workshop", url: "training.html" }
+];
+</script>
+<input type="text" id="searchInput" placeholder="ค้นหา...">
+<div id="searchResults"></div>
+<script>
+const fuse = new Fuse(topics, {
+  keys: ["title", "category"],  // ค้นได้หลายฟิลด์
+  threshold: 0.4                // 0 = แม่นมาก, 0.4 = ยืดหยุ่นดีสุด
+});
+
+document.getElementById("searchInput").addEventListener("input", function () {
+  const keyword = this.value;
+  const results = fuse.search(keyword);
+
+  let html = "";
+
+  if (keyword === "") {
+    document.getElementById("searchResults").innerHTML = "";
+    return;
+  }
+
+  if (results.length === 0) {
+    html = `<p>ไม่พบผลลัพธ์</p>`;
+  } else {
+    results.forEach(r => {
+      html += `
+        <div class="result-item">
+          <a href="${r.item.url}">
+            <strong>${r.item.title}</strong><br>
+            <small>${r.item.category}</small>
+          </a>
+        </div>
+      `;
+    });
+  }
+
+  document.getElementById("searchResults").innerHTML = html;
+});
+</script>
+<style>
+#searchInput {
+  width: 70%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #7ec8d4;
+}
+
+.result-item {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.result-item a {
+  color: #0b7285;
+  text-decoration: none;
+}
+</style>
+

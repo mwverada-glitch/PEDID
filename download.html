@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ดาวน์โหลดเอกสาร / ประกาศ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left">สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+        <div class="right">
+<!-- DEMO BUTTONS -->
+            <button class="btn-primary" onclick="openModal('login')">เข้าสู่ระบบ</button>
+            <button class="btn-primary" onclick="openModal('register')">ลงทะเบียน</button>
+            <button class="lang">TH</button>
+            <button class="lang">EN</button>
+        </div>
+    </div>
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div id="tabLogin" class="tab active" onclick="switchTab('login')">เข้าสู่ระบบ</div>
+            <div id="tabRegister" class="tab" onclick="switchTab('register')">ลงทะเบียน</div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="loginPass" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('loginPass')">👁</span>
+            </div>
+
+            <button class="submit-btn">เข้าสู่ระบบ</button>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display:none;">
+
+            <label>ชื่อ-นามสกุล</label>
+            <input type="text" placeholder="ชื่อจริง-นามสกุล">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass1" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass1')">👁</span>
+            </div>
+
+            <label>ยืนยันรหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass2" placeholder="ยืนยันรหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass2')">👁</span>
+            </div>
+
+            <button class="submit-btn">ลงทะเบียน</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- HEADER -->
+<header>
+        <div class="logo-area">
+        <div class="logo-circle">
+            <img src="OIP2.webp" alt="PED CMU">
+        </div>
+
+        <div class="logo-round">
+            <img src="S__55492628.jpg" alt="PED Unit">
+        </div>
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html">HOME</a>
+
+        <!-- ABOUT US -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">ABOUT US ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="aboutus1.html">สาขาวิชาโรคติดเชื้อ</a></li>
+                <li><a href="aboutuscenter.html">ศูนย์โรคติดเชื้อเด็ก</a></li>
+                <li><a href="aboutussite.html">เว็บไซต์ที่เกี่ยวข้อง</a></li>
+            </ul>
+        </div>
+
+        <!-- OUR TEAM -->
+        <a href="personal.html">OUR TEAM ▾</a>
+
+        <!-- CONTENT -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">CONTENT ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="Guideline.html">Guideline</a></li>
+                <li><a href="Case Study.html">Case Study</a></li>
+
+                <!-- Submenu -->
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">Medical content ▾</a>
+                    <ul class="submenu">
+                        <li><a href="Medical content.html">Medical content</a></li>
+                        <li><a href="Medical content.html">ความรู้ทั่วไป</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="Workshop.html">Education Training</a></li>
+            </ul>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">RESEARCH ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="research_overview.html">Research Overview</a></li>
+                <li><a href="research_projects.html">Ongoing Projects</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </div>
+
+        <!-- NEWS -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">NEWS / EVENTS ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="Event.html">EVENTS</a></li>
+                <li><a href="News3.html">ประกาศ / ดาวน์โหลด</a></li>
+            </ul>
+        </div>
+
+        <a href="contact.html">CONTACT US</a>
+        <span class="search">🔍</span>
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="พิมพ์เพื่อค้นหา...">
+            <button onclick="searchFunction()">ค้นหา</button>
+        </div>
+
+    </nav>
+</header>
+<style>
+    body {
+        font-family: "Prompt", sans-serif;
+        margin: 0;
+        background: #f5f7fb;
+    }
+
+    .container {
+        max-width: 950px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 34px;
+        margin-bottom: 25px;
+        color: #333;
+    }
+    .section-title {
+        font-size: 22px;
+        font-weight: 600;
+        color: #444;
+        margin: 30px 0 15px;
+    }
+
+    .file-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .file-info h3 {
+        font-size: 18px;
+        margin: 0 0 5px;
+    }
+
+    .file-info p {
+        font-size: 14px;
+        color: #777;
+        margin: 0;
+    }
+
+    .download-btn {
+        padding: 10px 18px;
+        background: #226130;
+        color: #fff;
+        text-decoration: none;
+        font-size: 15px;
+        border-radius: 8px;
+        transition: 0.2s;
+    }
+
+    .download-btn:hover {
+        background: #226130;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>ดาวน์โหลดเอกสาร / ประกาศ</h1>
+
+    <div class="section-title">📌 ประกาศ</div>
+
+    <div class="file-card">
+        <div class="file-info">
+            <h3>ประกาศรายชื่อผู้ผ่านการคัดเลือก</h3>
+            <p>PDF · อัปเดตเมื่อ 12 ก.พ. 2026 · 1.2 MB</p>
+        </div>
+        <a href="#" class="download-btn">ดาวน์โหลด</a>
+    </div>
+
+    <div class="file-card">
+        <div class="file-info">
+            <h3>ประกาศกำหนดการอบรมประจำปี</h3>
+            <p>PDF · อัปเดตเมื่อ 5 ม.ค. 2026 · 850 KB</p>
+        </div>
+        <a href="#" class="download-btn">ดาวน์โหลด</a>
+    </div>
+
+    <!-- แบบฟอร์ม -->
+    <div class="section-title"> แบบฟอร์ม</div>
+
+    <div class="file-card">
+        <div class="file-info">
+            <h3>แบบฟอร์ม......</h3>
+            <p>อัปเดตเมื่อ .....</p>
+        </div>
+        <a href="#" class="download-btn">ดาวน์โหลด</a>
+    </div>
+
+    <div class="file-card">
+        <div class="file-info">
+            <h3>แบบฟอร์ม...</h3>
+            <p>อัปเดตเมื่อ ...</p>
+        </div>
+        <a href="#" class="download-btn">ดาวน์โหลด</a>
+    </div>
+
+</div>
+
+</body>
+</html>

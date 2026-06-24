@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Our Alumni</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left">สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+        <div class="right">
+<!-- DEMO BUTTONS -->
+            <button class="btn-primary" onclick="openModal('login')">เข้าสู่ระบบ</button>
+            <button class="btn-primary" onclick="openModal('register')">ลงทะเบียน</button>
+            <button class="lang">TH</button>
+            <button class="lang">EN</button>
+        </div>
+    </div>
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div id="tabLogin" class="tab active" onclick="switchTab('login')">เข้าสู่ระบบ</div>
+            <div id="tabRegister" class="tab" onclick="switchTab('register')">ลงทะเบียน</div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="loginPass" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('loginPass')">👁</span>
+            </div>
+
+            <button class="submit-btn">เข้าสู่ระบบ</button>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display:none;">
+
+            <label>ชื่อ-นามสกุล</label>
+            <input type="text" placeholder="ชื่อจริง-นามสกุล">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass1" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass1')">👁</span>
+            </div>
+
+            <label>ยืนยันรหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass2" placeholder="ยืนยันรหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass2')">👁</span>
+            </div>
+
+            <button class="submit-btn">ลงทะเบียน</button>
+        </div>
+
+    </div>
+</div>
+<!-- HEADER -->
+<header>
+    <div class="logo-area">
+        <div class="logo-circle">
+            <img src="OIP2.webp" alt="PED CMU">
+        </div>
+
+        <div class="logo-round">
+            <img src="S__55492628.jpg" alt="PED Unit">
+        </div>
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html">HOME</a>
+
+        <!-- ABOUT US -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">ABOUT US ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="aboutus1.html">สาขาวิชาโรคติดเชื้อ</a></li>
+                <li><a href="aboutuscenter.html">ศูนย์โรคติดเชื้อเด็ก</a></li>
+                <li><a href="aboutussite.html">เว็บไซต์ที่เกี่ยวข้อง</a></li>
+            </ul>
+        </div>
+
+        <!-- OUR TEAM -->
+        <a href="personal.html">OUR TEAM ▾</a>
+
+        <!-- CONTENT -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">CONTENT ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="Guideline.html">Guideline</a></li>
+                <li><a href="Case Study.html">Case Study</a></li>
+
+                <!-- Submenu -->
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">Medical content ▾</a>
+                    <ul class="submenu">
+                        <li><a href="Medical content.html">Medical content</a></li>
+                        <li><a href="Medical content.html">ความรู้ทั่วไป</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="Workshop.html">Education Training</a></li>
+            </ul>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">RESEARCH ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="research_overview.html">Research Overview</a></li>
+                <li><a href="research_projects.html">Ongoing Projects</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </div>
+
+        <!-- NEWS -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">NEWS / EVENTS ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="Event.html">EVENTS</a></li>
+                <li><a href="News3.html">ประกาศ / ดาวน์โหลด</a></li>
+            </ul>
+        </div>
+        <a href="contact.html">CONTACT US</a>
+        <span class="search">🔍</span>
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="พิมพ์เพื่อค้นหา...">
+            <button type="button" id="searchBtn">ค้นหา</button>
+            <div id="searchResults"></div>
+        </div>
+
+    </nav>
+</header>
+
+<!--alumni section-->
+
+<section class="alumni-hero">
+    <div class="alumni-hero-content">
+        <h1>Our Alumni</h1>
+        <p>รายชื่อศิษย์เก่าที่เคยร่วมงานและสร้างผลงานร่วมกับทีมของเรา</p>
+    </div>
+</section>
+
+<section class="alumni-grid-section">
+
+    <div class="alumni-grid">
+        <!-- Alumni Card 1 -->
+        <div class="alumni-card">
+            <img src="profile1.jpg" alt="Alumni photo">
+            <h3>ศ.พญ.ธันยวีร์&nbsp;ภูธนกิจ</h3>
+            <p>ปีการศึกษา 2547</p>
+        </div>
+
+        <!-- Alumni Card 2 -->
+        <div class="alumni-card">
+            <img src="IMG_3192.JPG" alt="Alumni photo">
+            <h3>ศ.ดร.พญ.เพณณินาท์&nbsp;โอเบอร์ดอร์เฟอร์</h3>
+            <p>ปีการศึกษา 2548</p>
+        </div>
+
+        <!-- Alumni Card 3 -->
+        <div class="alumni-card">
+            <img src="profile3.jpg" alt="Alumni photo">
+            <h3>พญ.พจนีย์&nbsp;จิตตมาลา</h3>
+            <p>ปีการศึกษา 2550</p>
+        </div>
+
+        <!-- Alumni Card 4 -->
+        <div class="alumni-card">
+            <img src="tas.png" alt="Alumni photo">
+            <h3>รศ.ดร.พญ.ทวิติยา&nbsp;สุจริตรักษ์</h3>
+            <p>ปีการศึกษา 2552</p>
+        </div>    
+
+        <!-- Alumni Card 5 -->
+        <div class="alumni-card">
+            <img src="profile3.jpg" alt="Alumni photo">
+            <h3>พญ. นัทธพร&nbsp;วรรธนัจฉริยา</h3>
+            <p>ปีการศึกษา 2553</p>
+        </div>
+
+        <!-- Alumni Card 6 -->
+        <div class="alumni-card">
+            <img src="profile3.jpg" alt="Alumni photo">
+            <h3>นพ.กฤษณะ&nbsp;คงถาวรสกุล</h3>
+            <p>ปีการศึกษา 2555</p>
+        </div>    
+
+        <!-- Alumni Card 7 -->
+        <div class="alumni-card">
+            <img src="IMG_3202.JPG" alt="Alumni photo">
+            <h3>พญ.อัญชลี&nbsp;วังจิระพันธ์</h3>
+            <p>ปีการศึกษา 2556</p>
+        </div> 
+
+        <!-- Alumni Card 8 -->
+        <div class="alumni-card">
+            <img src="profile3.jpg" alt="Alumni photo">
+            <h3>นพ.สัจจะ&nbsp;อิศรางกูร ณ อยุธยา</h3>
+            <p>ปีการศึกษา 2558</p>
+        </div>    
+
+        <!-- Alumni Card 9 -->
+        <div class="alumni-card">
+            <img src="morsiprang.jpg" alt="Alumni photo">
+            <h3>อ.พญ.สิปาง&nbsp;ปังประเสริฐกุล</h3>
+            <p>ปีการศึกษา 2566</p>
+        </div>       
+
+        <!-- Alumni Card 10 -->
+        <div class="alumni-card">
+            <img src="mornook.jpg" alt="Alumni photo">
+            <h3>อ.พญ.ณัฐชยาญ์&nbsp;คุณานิจถาวร</h3>
+            <p>ปีการศึกษา 256...</p>
+        </div>   
+        </div>        
+        
+    </div>
+</section>
+
+<style>
+    .alumni-hero {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.alumni-hero h1 {
+    font-size: 48px;
+    color: #0a2e5c;
+    margin-bottom: 10px;
+}
+
+.alumni-hero p {
+    color: #3c4a5c;
+    font-size: 18px;
+}
+
+/* GRID SECTION */
+.alumni-grid-section {
+    padding: 100px 50px;
+}
+
+.alumni-title {
+    text-align: center;
+    font-size: 24px;
+    color: #0a2e5c;
+    margin-bottom: 40px;
+}
+.alumni-card:nth-child(1) { background: #E8F3FF; }
+.alumni-card:nth-child(2) { background: #FFF4E8; }
+.alumni-card:nth-child(3) { background: #E9FFE8; }
+.alumni-card:nth-child(4) { background: #F9E8FF; }
+.alumni-card:nth-child(5) { background: #E8FFF6; }
+.alumni-card:nth-child(6) { background: #FFE8EC; }
+.alumni-card:nth-child(7) { background: #E8F3FF; }
+.alumni-card:nth-child(8) { background: #FFF4E8; }
+.alumni-card:nth-child(9) { background: #E9FFE8; }
+.alumni-card:nth-child(10) { background:#F9E8FF; }
+
+
+.alumni-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* ⭐ 4 คนต่อแถว */
+    gap: 30px;
+    max-width: 1300px; /* ⭐ กรอบรวมกว้างขึ้น */
+    margin: auto;
+
+}
+
+/* CARD STYLE */
+.alumni-card {
+    background: white;
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+
+}
+
+.alumni-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.alumni-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* ป้องกันชื่อยาวล้นกรอบ + จัดบรรทัดให้อ่านง่าย */
+.alumni-card h3 {
+    font-size: clamp(16px, 2vw, 20px);
+    color: #0a2e5c;
+    margin-bottom: 5px;
+    line-height: 1.3;
+
+    /* จำกัดจำนวนบรรทัดไม่ให้ล้นกรอบ */
+    display: -webkit-box;
+    /* ปรับเป็น 2 หรือ 3 ตามที่ต้องการ */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.alumni-card p {
+    color: #444;
+    font-size: 15px;
+}
+
+</style>
+
+</body>
+</html>

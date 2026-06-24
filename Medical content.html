@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Medical content</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<style>
+.dropdown-wrapper {
+    position: relative;
+}
+.dropdown-wrapper:hover .dropdown-menu {
+    display: block;
+}</style>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left">สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+        <div class="right">
+<!-- DEMO BUTTONS -->
+            <button class="btn-primary" onclick="openModal('login')">เข้าสู่ระบบ</button>
+            <button class="btn-primary" onclick="openModal('register')">ลงทะเบียน</button>
+            <button class="lang">TH</button>
+            <button class="lang">EN</button>
+        </div>
+    </div>
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div id="tabLogin" class="tab active" onclick="switchTab('login')">เข้าสู่ระบบ</div>
+            <div id="tabRegister" class="tab" onclick="switchTab('register')">ลงทะเบียน</div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="loginPass" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('loginPass')">👁</span>
+            </div>
+
+            <button class="submit-btn">เข้าสู่ระบบ</button>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display:none;">
+
+            <label>ชื่อ-นามสกุล</label>
+            <input type="text" placeholder="ชื่อจริง-นามสกุล">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass1" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass1')">👁</span>
+            </div>
+
+            <label>ยืนยันรหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass2" placeholder="ยืนยันรหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass2')">👁</span>
+            </div>
+
+            <button class="submit-btn">ลงทะเบียน</button>
+        </div>
+
+    </div>
+</div>
+<!-- HEADER -->
+<header>
+    <div class="logo-area">
+        <div class="logo-circle">
+            <img src="OIP2.webp" alt="PED CMU">
+        </div>
+
+        <div class="logo-round">
+            <img src="S__55492628.jpg" alt="PED Unit">
+        </div>
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html">HOME</a>
+
+        <!-- ABOUT US -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">ABOUT US ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="aboutus1.html">สาขาวิชาโรคติดเชื้อ</a></li>
+                <li><a href="aboutuscenter.html">ศูนย์โรคติดเชื้อเด็ก</a></li>
+                <li><a href="aboutussite.html">เว็บไซต์ที่เกี่ยวข้อง</a></li>
+            </ul>
+        </div>
+
+        <!-- OUR TEAM -->
+        <a href="personal.html">OUR TEAM ▾</a>
+
+        <!-- CONTENT -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">CONTENT ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="Guideline.html">Guideline</a></li>
+                <li><a href="Case Study.html">Case Study</a></li>
+
+                <!-- Submenu -->
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">Medical content ▾</a>
+                    <ul class="submenu">
+                        <li><a href="Medical content.html">Medical content</a></li>
+                        <li><a href="Medical content.html">ความรู้ทั่วไป</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="Workshop.html">Education Training</a></li>
+            </ul>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">RESEARCH ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="research_overview.html">Research Overview</a></li>
+                <li><a href="research_projects.html">Ongoing Projects</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </div>
+
+        <!-- NEWS -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">NEWS / EVENTS ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="Event.html">EVENTS</a></li>
+                <li><a href="News3.html">ประกาศ / ดาวน์โหลด</a></li>
+            </ul>
+        </div>
+
+        <a href="contact.html">CONTACT US</a>
+        <span class="search">🔍</span>
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="พิมพ์เพื่อค้นหา...">
+            <button onclick="searchFunction()">ค้นหา</button>
+        </div>
+
+    </nav>
+</header>
+
+<style>
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #eaf6ff, #ffeef5);
+  }
+  .container {
+    max-width: 1000px;
+    margin: 30px auto 0; /* เพิ่มระยะห่างจาก header */
+    padding: 30px 20px;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #7cc6ff, #ffb3d1);
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 30px;
+    text-align: center;
+
+  }
+
+  .section {
+    margin-bottom: 35px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #003d6a;
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    transition: 0.2s;
+    border-left: 6px solid #7cc6ff;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+  }
+
+  .card h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+  }
+
+  .card p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+  }
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+  .podcast {
+  border-left: 6px ;
+}
+
+/* สีการ์ด podcast แบบพาสเทล (เปลี่ยนใหม่เป็นสดใสกว่าเดิม) */
+.section .card.podcast:nth-of-type(2) { background: #e0f4ff; }
+.section .card.podcast:nth-of-type(3) { background: #e8ffe0; }
+.section .card.podcast:nth-of-type(4) { background: #fff7d6; }
+.section .card.podcast:nth-of-type(5) { background: #f3e0ff; }
+.section .card.podcast:nth-of-type(6) { background: #ffe7d6; }
+.section .card.podcast:nth-of-type(7) { background: #ffe0e9; }
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .card-link:hover .card {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Medical Content</h1>
+
+  </div>
+
+  <div class="section">
+    <div class="section-title">📘 ความรู้ทางการแพทย์</div>
+
+
+    <a href="https://www.thaipediatrics.org/5133/" class="card-link">
+    <div class="card">
+      <h3>แนวทางการให้ภูมิคุ้มกันสำเร็จรูป Nirsevimab</h3>
+      <p>เพื่อป้องกันโรครุนแรงจากการติดเชื้อไวรัสอาร์เอสวี</p>
+    </div>
+
+    <a href="https://drive.google.com/file/d/1n713shYtpuLGR2IpBY8EO6x1-BHNCv0o/view?usp=drivesdk" class="card-link">
+    <div class="card">
+      <h3>คำแนะนำการให้วัคซีนไข้กาฬหลังแอ่นในเด็กและวัยรุ่นไทย</h3>
+      <p>โดยสมาคมโรคติดเชื้อในเด็กแห่งประเทศไทย</p>
+    </div>
+</a>
+  </div>
+
+<div class="section">
+  <div class="section-title">🎧 Medical Podcast</div>
+
+  <!-- EP 1 -->
+<div class="card podcast">
+    <h3> MED CMU ฟัง FOR HEALTH ตอน "ไวรัส RSV ไวรัสร้าย ใกล้ตัวลูกน้อย"</h3>
+    <p>วิทยากรโดย รศ.ดร.พญ.ทวิติยา สุจริตรักษ์</p>
+
+    <div class="video-wrapper">
+        <iframe 
+            src="https://www.youtube.com/embed/8lgf738jKS4"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
+<!-- EP 2 -->
+<div class="card podcast">
+  <h3>MED CMU ฟัง for health EP. 137 รู้ทัน "โรคไข้เลือดออก” อันตรายใกล้ตัว !</h3>
+  <p>วิทยากรโดย รศ.ดร.พญ.ทวิติยา สุจริตรักษ์</p>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/9PfHotFnhVU" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- EP 3 -->
+<div class="card podcast">
+  <h3>MED CMU ฟัง for health EP. 163 รับมืออย่างไร เมื่อโควิด-19 ระบาดอีกครั้ง</h3>
+  <p>วิทยากรโดย อ.พญ.สิปาง ปังประเสริฐกุล</p>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/x-k01435plM" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- EP 4 -->
+<div class="card podcast">
+  <h3>MED CMU ฟัง for health EP. 187 “โรคมือ เท้า ปาก” ภัยใกล้ตัวลูกน้อย ที่พ่อแม่ไม่ควรมองข้าม!</h3>
+  <p>วิทยากรโดย พญ.ภัทรานันท์ กุศลธรรมรัตน์</p>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/TQQfktx0Sqg" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- EP 5 -->
+<div class="card podcast">
+  <h3>MED CMU ฟัง for health EP. 191 “ทำอย่างไรเมื่อลูกติดไข้หวัดใหญ่ สายพันธุ์ A”</h3>
+  <p>วิทยากรโดย อ.พญ.สิปาง ปังประเสริฐกุล</p>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/lpr76XUQ_2c" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- EP 6 -->
+<div class="card podcast">
+  <h3>MED CMU ฟัง for health EP. 208 หน้าฝน ระวัง ! “โรคไข้เลือดออก” ระบาด</h3>
+  <p>วิทยากรโดย รศ.ดร.พญ.ทวิติยา สุจริตรักษ์</p>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/uEZNlgEAXdE" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="section">
+    <div class="section-title">📱 TikTok Health Clips</div>
+
+  <div class="card tiktok-video">
+    <h3>HPV ไวรัสก่อมะเร็ง</h3>
+    <p>วิทยากรโดย รศ.ดร.พญ.ทวิติยา สุจริตรักษ์</p>
+
+    <div class="tiktok-wrapper">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@vaccinepidst/video/7628867702081670421" data-video-id="7628867702081670421" style="max-width: 605px;min-width: 325px;" >
+        <section> </section>
+      </blockquote>
+    </div>
+
+  </div>
+</div>
+
+<!-- TikTok Embed Script -->
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+
+<script>
+function openModal(mode) {
+    document.getElementById("popupModal").style.display = "flex";
+    switchTab(mode);
+}
+
+/* --- CLOSE MODAL --- */
+function closeModal() {
+    document.getElementById("popupModal").style.display = "none";
+}
+
+/* --- TOGGLE PASSWORD --- */
+function togglePassword(id) {
+    let field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+}
+
+/* --- SWITCH TAB --- */
+function switchTab(tab) {
+    const loginTab = document.getElementById("tabLogin");
+    const regTab = document.getElementById("tabRegister");
+    const loginForm = document.getElementById("loginForm");
+    const regForm = document.getElementById("registerForm");
+
+    if (tab === "login") {
+        loginTab.classList.add("active");
+        regTab.classList.remove("active");
+        loginForm.style.display = "block";
+        regForm.style.display = "none";
+    } else {
+        regTab.classList.add("active");
+        loginTab.classList.remove("active");
+        loginForm.style.display = "none";
+        regForm.style.display = "block";
+    }
+}
+
+/* --- CLOSE WHEN CLICK OUTSIDE --- */
+window.onclick = function(event) {
+    const modal = document.getElementById("popupModal");
+    if (event.target === modal) closeModal();
+};
+
+
+// ----- CLOSE POPUP WHEN CLICK OUTSIDE -----
+window.onclick = function(event) {
+    let loginModal = document.getElementById("loginModal");
+    let regModal = document.getElementById("registerModal");
+
+    if (event.target === loginModal) loginModal.style.display = "none";
+    if (event.target === regModal) regModal.style.display = "none";
+};
+
+/*search*/
+document.querySelector(".search").addEventListener("click", function() {
+    let box = document.getElementById("searchBar");
+    box.style.display = (box.style.display === "flex") ? "none" : "flex";
+});
+
+function searchFunction() {
+    let keyword = document.getElementById("searchInput").value.trim();
+    if (keyword === "") {
+        alert("กรุณาพิมพ์คำที่ต้องการค้นหา");
+        return;
+    }
+    alert("ค้นหา: " + keyword);
+}
+
+</script>
+
+</body>
+</html>

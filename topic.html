@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>TOPIC</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<style>
+.dropdown-wrapper {
+    position: relative;
+}
+.dropdown-wrapper:hover .dropdown-menu {
+    display: block;
+}</style>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left">สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+        <div class="right">
+<!-- DEMO BUTTONS -->
+            <button class="btn-primary" onclick="openModal('login')">เข้าสู่ระบบ</button>
+            <button class="btn-primary" onclick="openModal('register')">ลงทะเบียน</button>
+            <button class="lang">TH</button>
+            <button class="lang">EN</button>
+        </div>
+    </div>
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div id="tabLogin" class="tab active" onclick="switchTab('login')">เข้าสู่ระบบ</div>
+            <div id="tabRegister" class="tab" onclick="switchTab('register')">ลงทะเบียน</div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="loginPass" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('loginPass')">👁</span>
+            </div>
+
+            <button class="submit-btn">เข้าสู่ระบบ</button>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display:none;">
+
+            <label>ชื่อ-นามสกุล</label>
+            <input type="text" placeholder="ชื่อจริง-นามสกุล">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass1" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass1')">👁</span>
+            </div>
+
+            <label>ยืนยันรหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass2" placeholder="ยืนยันรหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass2')">👁</span>
+            </div>
+
+            <button class="submit-btn">ลงทะเบียน</button>
+        </div>
+
+    </div>
+</div>
+<!-- HEADER -->
+<header>
+    <div class="logo-area">
+        <div class="logo-circle">
+            <img src="OIP2.webp" alt="PED CMU">
+        </div>
+
+        <div class="logo-round">
+            <img src="S__55492628.jpg" alt="PED Unit">
+        </div>
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html">HOME</a>
+
+        <!-- ABOUT US -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">ABOUT US ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="aboutus1.html">สาขาวิชาโรคติดเชื้อ</a></li>
+                <li><a href="aboutuscenter.html">ศูนย์โรคติดเชื้อเด็ก</a></li>
+                <li><a href="aboutussite.html">เว็บไซต์ที่เกี่ยวข้อง</a></li>
+            </ul>
+        </div>
+
+        <!-- OUR TEAM -->
+        <a href="personal.html">OUR TEAM ▾</a>
+
+        <!-- CONTENT -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">CONTENT ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="Guideline.html">Guideline</a></li>
+                <li><a href="Case Study.html">Case Study</a></li>
+
+                <!-- Submenu -->
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">Medical content ▾</a>
+                    <ul class="submenu">
+                        <li><a href="Medical content.html">Medical content</a></li>
+                        <li><a href="Medical content.html">ความรู้ทั่วไป</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="Workshop.html">Education Training</a></li>
+            </ul>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">RESEARCH ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="research_overview.html">Research Overview</a></li>
+                <li><a href="research_projects.html">Ongoing Projects</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </div>
+
+        <!-- NEWS -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">NEWS / EVENTS ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="Event.html">EVENTS</a></li>
+                <li><a href="News3.html">ประกาศ / ดาวน์โหลด</a></li>
+            </ul>
+        </div>
+
+        <a href="contact.html">CONTACT US</a>
+        <span class="search">🔍</span>
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="พิมพ์เพื่อค้นหา...">
+            <button onclick="searchFunction()">ค้นหา</button>
+        </div>
+
+    </nav>
+</header>
+<style>
+.news-content {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: "Prompt", sans-serif;
+}
+
+.news-content img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+</style>
+
+</head>
+<body>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Prompt", sans-serif;
+            background: #f5f7fa;
+        }
+
+        /* HERO */
+        .hero {
+            background:#D6C3CE;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; left: 0;
+            background: url("https://i.imgur.com/hqU7yHf.png");
+            opacity: 0.05;
+            background-size: cover;
+        }
+        .hero h1 {
+            font-size: 46px;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+        .hero p {
+            margin-top: 10px;
+            font-size: 20px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        /* CATEGORY BUTTONS */
+        .topics {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .topics button {
+            background: #ffffff;
+            border: 2px solid #D8BFD8;
+            color: #0d355d;
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .topics button:hover {
+            background: #D8BFD8;
+            color: white;
+        }
+
+        /* TOPIC CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #D8BFD8;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #0d355d;
+        }
+
+        .card p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .read-more {
+            margin-top: 10px;
+            display: inline-block;
+            color: #0d355d;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .read-more:hover {
+            letter-spacing: 1px;
+        }
+
+        /* PAGINATION */
+        .pagination {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .pagination button {
+            background: white;
+            border: 2px solid #0d355d;
+            padding: 10px 18px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .pagination button:hover {
+            background: #0d355d;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Topic Review</h1>
+        <p>บทความและหัวข้อสำคัญด้านโรคติดเชื้อ</p>
+    </section>
+
+    <div class="container">
+
+        <!-- CATEGORY FILTER -->
+        <div class="topics">
+            <button>ทั้งหมด</button>
+            <button>ไวรัส</button>
+            <button>แบคทีเรีย</button>
+            <button>วัคซีน</button>
+            <button>แนวทางรักษา</button>
+            <button>Case Review</button>
+        </div>
+
+        <!-- TOPIC CARDS -->
+        <div class="cards">
+
+            <div class="card">
+                <img src="virus-850x446.png">
+                <div class="card-body">
+                    <span class="tag">ไวรัส</span>
+                    <h3>Severe Viral Infection in Children</h3>
+                    <p>สรุปอาการสำคัญ การรักษา และข้อควรระวังในผู้ป่วยเด็กที่มีการติดเชื้อ...</p>
+                    <div class="read-more">Read more →</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c">
+                <div class="card-body">
+                    <span class="tag">วัคซีน</span>
+                    <h3>Updated Vaccine 2026</h3>
+                    <p>ข้อแนะนำล่าสุดด้านวัคซีนสำหรับเด็กและวัยรุ่น อัปเดตปี 2026</p>
+                    <div class="read-more">Read more →</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="OIP (4).webp">
+                <div class="card-body">
+                    <span class="tag">แบคทีเรีย</span>
+                    <h3>Antibiotic Resistance Review</h3>
+                    <p>วิเคราะห์สถานการณ์เชื้อดื้อยาและแนวทางการเลือกใช้ยาปฏิชีวนะที่เหมาะสม</p>
+                    <div class="read-more">Read more →</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8">
+                <div class="card-body">
+                    <span class="tag">Case Review</span>
+                    <h3>Case Review</h3>
+                    <p>สรุปเคสสำคัญ พร้อมการวินิจฉัยและการรักษาที่ใช้จริงในคลินิก</p>
+                    <div class="read-more">Read more →</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="pagination">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+        </div>
+
+    </div>
+<script>
+function openModal(mode) {
+    document.getElementById("popupModal").style.display = "flex";
+    switchTab(mode);
+}
+
+/* --- CLOSE MODAL --- */
+function closeModal() {
+    document.getElementById("popupModal").style.display = "none";
+}
+
+/* --- TOGGLE PASSWORD --- */
+function togglePassword(id) {
+    let field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+}
+
+/* --- SWITCH TAB --- */
+function switchTab(tab) {
+    const loginTab = document.getElementById("tabLogin");
+    const regTab = document.getElementById("tabRegister");
+    const loginForm = document.getElementById("loginForm");
+    const regForm = document.getElementById("registerForm");
+
+    if (tab === "login") {
+        loginTab.classList.add("active");
+        regTab.classList.remove("active");
+        loginForm.style.display = "block";
+        regForm.style.display = "none";
+    } else {
+        regTab.classList.add("active");
+        loginTab.classList.remove("active");
+        loginForm.style.display = "none";
+        regForm.style.display = "block";
+    }
+}
+
+/* --- CLOSE WHEN CLICK OUTSIDE --- */
+window.onclick = function(event) {
+    const modal = document.getElementById("popupModal");
+    if (event.target === modal) closeModal();
+};
+
+
+// ----- CLOSE POPUP WHEN CLICK OUTSIDE -----
+window.onclick = function(event) {
+    let loginModal = document.getElementById("loginModal");
+    let regModal = document.getElementById("registerModal");
+
+    if (event.target === loginModal) loginModal.style.display = "none";
+    if (event.target === regModal) regModal.style.display = "none";
+};
+
+/*search*/
+document.querySelector(".search").addEventListener("click", function() {
+    let box = document.getElementById("searchBar");
+    box.style.display = (box.style.display === "flex") ? "none" : "flex";
+});
+
+function searchFunction() {
+    let keyword = document.getElementById("searchInput").value.trim();
+    if (keyword === "") {
+        alert("กรุณาพิมพ์คำที่ต้องการค้นหา");
+        return;
+    }
+    alert("ค้นหา: " + keyword);
+}
+</script>
+</body>
+</html>

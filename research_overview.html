@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Research Overview</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<style>
+.dropdown-wrapper {
+    position: relative;
+}
+.dropdown-wrapper:hover .dropdown-menu {
+    display: block;
+}</style>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left">สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+        <div class="right">
+<!-- DEMO BUTTONS -->
+            <button class="btn-primary" onclick="openModal('login')">เข้าสู่ระบบ</button>
+            <button class="btn-primary" onclick="openModal('register')">ลงทะเบียน</button>
+            <button class="lang">TH</button>
+            <button class="lang">EN</button>
+        </div>
+    </div>
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div id="tabLogin" class="tab active" onclick="switchTab('login')">เข้าสู่ระบบ</div>
+            <div id="tabRegister" class="tab" onclick="switchTab('register')">ลงทะเบียน</div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="loginPass" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('loginPass')">👁</span>
+            </div>
+
+            <button class="submit-btn">เข้าสู่ระบบ</button>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display:none;">
+
+            <label>ชื่อ-นามสกุล</label>
+            <input type="text" placeholder="ชื่อจริง-นามสกุล">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass1" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass1')">👁</span>
+            </div>
+
+            <label>ยืนยันรหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass2" placeholder="ยืนยันรหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass2')">👁</span>
+            </div>
+
+            <button class="submit-btn">ลงทะเบียน</button>
+        </div>
+
+    </div>
+</div>
+<!-- HEADER -->
+<header>
+    <div class="logo-area">
+        <div class="logo-circle">
+            <img src="OIP2.webp" alt="PED CMU">
+        </div>
+
+        <div class="logo-round">
+            <img src="S__55492628.jpg" alt="PED Unit">
+        </div>
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html">HOME</a>
+
+        <!-- ABOUT US -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">ABOUT US ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="aboutus1.html">สาขาวิชาโรคติดเชื้อ</a></li>
+                <li><a href="aboutuscenter.html">ศูนย์โรคติดเชื้อเด็ก</a></li>
+                <li><a href="aboutussite.html">เว็บไซต์ที่เกี่ยวข้อง</a></li>
+            </ul>
+        </div>
+
+        <!-- OUR TEAM -->
+        <a href="personal.html">OUR TEAM ▾</a>
+
+        <!-- CONTENT -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">CONTENT ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="Guideline.html">Guideline</a></li>
+                <li><a href="Case Study.html">Case Study</a></li>
+
+                <!-- Submenu -->
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">Medical content ▾</a>
+                    <ul class="submenu">
+                        <li><a href="Medical content.html">Medical content</a></li>
+                        <li><a href="Medical content.html">ความรู้ทั่วไป</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="Workshop.html">Education Training</a></li>
+            </ul>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">RESEARCH ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="research_overview.html">Research Overview</a></li>
+                <li><a href="research_projects.html">Ongoing Projects</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </div>
+
+        <!-- NEWS -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">NEWS / EVENTS ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="Event.html">EVENTS</a></li>
+                <li><a href="News3.html">ประกาศ / ดาวน์โหลด</a></li>
+            </ul>
+        </div>
+
+        <a href="contact.html">CONTACT US</a>
+        <span class="search">🔍</span>
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="พิมพ์เพื่อค้นหา...">
+            <button onclick="searchFunction()">ค้นหา</button>
+        </div>
+
+    </nav>
+</header>
+
+<section class="research-overview">
+
+  <!-- Header -->
+  <div class="overview-header">
+    <h1>Research Overview</h1>
+    <p>ภาพรวมงานวิจัยทั้งหมดของทีม</p>
+  </div>
+
+<div class="stats-modern">
+
+  <div class="stat-item">
+    <div class="icon">📚</div>
+    <h2>65</h2>
+    <p>Publications</p>
+  </div>
+
+  <div class="stat-item">
+    <div class="icon">🧪</div>
+    <h2>2</h2>
+    <p>Ongoing Projects</p>
+  </div>
+
+  <div class="stat-item">
+    <div class="icon">🌍</div>
+    <h2>...</h2>
+    <p>Countries</p>
+  </div>
+
+</div>  
+
+  <!-- Research Focus -->
+  <div class="focus-section">
+    <h2>Research Focus Areas</h2>
+
+    <div class="focus-grid">
+      <div class="focus-card">
+        <h3>Focus 1  ... </h3>
+        <p>เพิ่มเติม</p>
+      </div>
+
+      <div class="focus-card">
+        <h3>Focus 2  ...</h3>
+        <p>เพิ่มเติม</p>
+      </div>
+
+      <div class="focus-card">
+        <h3>Vaccines</h3>
+        <p>งานวิจัยวัคซีนใหม่ ... </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="btn-box">
+    <a href="publications.html" class="btn">View Publications</a>
+    <a href="research_projects.html" class="btn outline">View Ongoing Projects</a>
+  </div>
+
+  
+</section>
+
+<style>
+    /* Overall Section */
+.research-overview {
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #eef2ff, #f8f9ff);
+  border-radius: 25px;
+  margin: 30px auto;
+  max-width: 1100px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  font-family: "Prompt", sans-serif;
+}
+
+/* Header */
+.overview-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.overview-header h1 {
+  font-size: 2.3rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.overview-header p {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Stats */
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  width: 180px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.stat-card h2 {
+  font-size: 2rem;
+  color: #6c5ce7;
+  margin: 0;
+}
+
+.stat-card p {
+  color: #636e72;
+  margin-top: 8px;
+}
+
+/* Focus Areas */
+.focus-section h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.focus-card {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: 0.2s;
+}
+
+.focus-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.focus-card h3 {
+  font-size: 1.2rem;
+  color: #341f97;
+  margin-bottom: 10px;
+}
+
+.focus-card p {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Buttons */
+.btn-box {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 5px;
+  border-radius: 12px;
+  background: #6c5ce7;
+  color: white;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #4b34c3;
+}
+
+.btn.outline {
+  background: none;
+  border: 2px solid #6c5ce7;
+  color: #6c5ce7;
+}
+
+.btn.outline:hover {
+  background: #6c5ce7;
+  color: white;
+}
+.stats-modern {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  width: 220px;
+  padding: 30px 20px;
+  text-align: center;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: 0.25s;
+}
+
+.stat-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* Icons */
+.stat-item .icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+/* Number */
+.stat-item h2 {
+  font-size: 2.3rem;
+  margin: 0;
+  background: linear-gradient(45deg, #6c5ce7, #a55eea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Text */
+.stat-item p {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #333;
+}
+</style>
+<script>
+function openModal(mode) {
+    document.getElementById("popupModal").style.display = "flex";
+    switchTab(mode);
+}
+
+/* --- CLOSE MODAL --- */
+function closeModal() {
+    document.getElementById("popupModal").style.display = "none";
+}
+
+/* --- TOGGLE PASSWORD --- */
+function togglePassword(id) {
+    let field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+}
+
+/* --- SWITCH TAB --- */
+function switchTab(tab) {
+    const loginTab = document.getElementById("tabLogin");
+    const regTab = document.getElementById("tabRegister");
+    const loginForm = document.getElementById("loginForm");
+    const regForm = document.getElementById("registerForm");
+
+    if (tab === "login") {
+        loginTab.classList.add("active");
+        regTab.classList.remove("active");
+        loginForm.style.display = "block";
+        regForm.style.display = "none";
+    } else {
+        regTab.classList.add("active");
+        loginTab.classList.remove("active");
+        loginForm.style.display = "none";
+        regForm.style.display = "block";
+    }
+}
+
+/* --- CLOSE WHEN CLICK OUTSIDE --- */
+window.onclick = function(event) {
+    const modal = document.getElementById("popupModal");
+    if (event.target === modal) closeModal();
+};
+
+
+// ----- CLOSE POPUP WHEN CLICK OUTSIDE -----
+window.onclick = function(event) {
+    let loginModal = document.getElementById("loginModal");
+    let regModal = document.getElementById("registerModal");
+
+    if (event.target === loginModal) loginModal.style.display = "none";
+    if (event.target === regModal) regModal.style.display = "none";
+};
+
+/*search*/
+document.querySelector(".search").addEventListener("click", function() {
+    let box = document.getElementById("searchBar");
+    box.style.display = (box.style.display === "flex") ? "none" : "flex";
+});
+
+function searchFunction() {
+    let keyword = document.getElementById("searchInput").value.trim();
+    if (keyword === "") {
+        alert("กรุณาพิมพ์คำที่ต้องการค้นหา");
+        return;
+    }
+    alert("ค้นหา: " + keyword);
+}
+
+</script>
+
+</body>
+</html>
+
+

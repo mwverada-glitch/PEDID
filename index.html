@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PED CMU</title>
+
+    <!-- CSS หลัก -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- โหลดฟอนต์ Prompt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Search Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+    <script src="search-data.js"></script>
+    <script src="search.js"></script>
+</head>
+
+    </head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left">สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+        <div class="right">
+<!-- DEMO BUTTONS -->
+            <button class="btn-primary" onclick="openModal('login')">เข้าสู่ระบบ</button>
+            <button class="btn-primary" onclick="openModal('register')">ลงทะเบียน</button>
+            <button class="lang">TH</button>
+            <button class="lang">EN</button>
+        </div>
+    </div>
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div id="tabLogin" class="tab active" onclick="switchTab('login')">เข้าสู่ระบบ</div>
+            <div id="tabRegister" class="tab" onclick="switchTab('register')">ลงทะเบียน</div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="loginPass" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('loginPass')">👁</span>
+            </div>
+
+            <button class="submit-btn">เข้าสู่ระบบ</button>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display:none;">
+
+            <label>ชื่อ-นามสกุล</label>
+            <input type="text" placeholder="ชื่อ-นามสกุล">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass1" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass1')">👁</span>
+            </div>
+
+            <label>ยืนยันรหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass2" placeholder="ยืนยันรหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass2')">👁</span>
+            </div>
+
+            <button class="submit-btn">ลงทะเบียน</button>
+        </div>
+
+    </div>
+</div>
+
+    <!-- Main Menu -->
+<header>
+    <div class="logo-area">
+        <div class="logo-circle">
+            <img src="OIP2.webp" alt="PED CMU">
+        </div>
+
+        <div class="logo-round">
+            <img src="S__55492628.jpg" alt="PED Unit">
+        </div>
+    </div>
+
+        <nav class="menu">
+            <a href="#">HOME</a>
+            <div class="dropdown-wrapper">
+            <!-- ABOUT US DROPDOWN -->
+            <div class="dropdown-wrapper">
+                <a href="#" id="aboutMenu">ABOUT US ▾</a>
+                <ul id="aboutDropdown" class="dropdown-menu">
+                    <li><a href="aboutus1.html">สาขาวิชาโรคติดเชื้อ</a></li>
+                    <li><a href="aboutuscenter.html">ศูนย์...โรคติดเชื้อเด็ก</a></li>
+                    <li><a href="aboutussite.html">เว็บไซต์ที่เกี่ยวข้อง</a></li>
+                </ul>
+            </div>
+            <a href="personal.html">OUT TEAM▾</a>
+
+            <a href="#" id="contentMenu">CONTENT ▾</a>
+                <ul id="contentDropdown" class="dropdown-menu">
+                    <li><a href="Guideline.html">Guideline</a></li>
+                    <li><a href="Case Study.html">Case Study</a></li>
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">Medical content</a>
+
+                    <ul class="submenu">
+                        <li><a href="Medical content.html">Medical content</a></li>
+                        <li><a href="info.html">ความรู้ทั่วไป</a></li>
+                    </ul>
+                </li>
+                    <li><a href="Workshop.html">Education Training</a></li>
+                </ul>
+            </div>
+            <a href="#RESEARCH">RESEARCH ▾</a>
+
+            <!-- NEWS / EVENTS DROPDOWN MENU -->
+            <div class="dropdown-wrapper">
+                <a href="#" id="newsMenu">NEWS / EVENTS ▾</a>
+                <ul id="newsDropdown" class="dropdown-menu">
+                    <li><a href="#newsevent">NEWS</a></li>
+                    <li><a href="Event.html">EVENTS</a></li>
+                    <li><a href="download.html">ประกาศ / ดาวน์โหลด</a></li>
+                </ul>
+            </div>
+
+            <a href="#contact">CONTACT US</a>
+            <span class="search">🔍</span>
+            <div class="search-bar" id="searchBar">
+                <input type="text" id="searchInput" placeholder="พิมพ์เพื่อค้นหา...">
+                <button type="button" id="searchBtn">ค้นหา</button>
+                <div id="searchResults"></div>
+            </div>
+        </nav>
+    </header>
+     
+
+     <!-- Hero Section -->
+<!-- HERO SLIDER -->
+<div class="swiper heroSwiper">
+    <div class="swiper-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+            <img src="1.jpg" class="hero-img">
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+            <img src="2.jpg" class="hero-img">
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+            <img src="3.jpg" class="hero-img">
+        </div>
+
+    </div>
+    <!-- Navigation -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
+<section class="about">
+    <div class="about-left">
+        <h2>About Our Unit</h2>
+        <h3>สาขาวิชาโรคติดเชื้อ (Division Of Infectious Diseases)</h3>
+
+        <p>
+            หน่วยสาขาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่ เป็นหน่วยงานที่มุ่งเน้นการดูแลรักษา ป้องกัน และควบคุมโรคติดเชื้อในเด็กอย่างครบวงจร โดยให้บริการทางการแพทย์ที่มีคุณภาพสูง 
+            ครอบคลุมทั้งผู้ป่วยนอกและผู้ป่วยใน ด้วยทีมกุมารแพทย์ผู้เชี่ยวชาญเฉพาะทางด้านโรคติดเชื้อ ร่วมกับบุคลากรสหสาขาวิชาชีพที่มีประสบการณ์หน่วยโรคติดเชื้อ มีบทบาทสำคัญในการวินิจฉัยและรักษาโรคติดเชื้อที่ซับซ้อนในเด็ก 
+            เช่น การติดเชื้อในกระแสเลือดโรคติดเชื้อไวรัสแบคทีเรียเชื้อรารวมถึงโรคติดเชื้ออุบัติใหม่และอุบัติซ้ำโดยยึดหลักการรักษาที่อิงตามหลักฐานเชิงประจักษ์และมาตรฐานสากล  นอกจากการให้บริการทางคลินิก 
+            หน่วยสาขาโรคติดเชื้อยังมีพันธกิจด้านการเรียนการสอนสำหรับนักศึกษาแพทย์ แพทย์ประจำบ้านกุมารเวชศาสตร์ และแพทย์ประจำบ้านต่อยอดสาขาโรคติดเชื้อ เพื่อพัฒนาศักยภาพบุคลากรทางการแพทย์ให้มีความรู้ ความสามารถ และทักษะที่ทันสมัย 
+            อีกทั้งยังส่งเสริมงานวิจัยด้านโรคติดเชื้อในเด็ก เพื่อสร้างองค์ความรู้ใหม่และพัฒนาระบบการดูแลผู้ป่วยอย่างต่อเนื่องหน่วยสาขาวิชาโรคติดเชื้อ มุ่งมั่นที่จะเป็นศูนย์กลางความเป็นเลิศด้านโรคติดเชื้อในเด็กของภาคเหนือ
+            และเป็นแหล่งส่งเสริมทางวิชาการที่มีคุณภาพในระดับประเทศและนานาชาติ พร้อมทั้งให้ความสำคัญกับการป้องกันโรค การให้วัคซีน และการสร้างความตระหนักรู้แก่ประชาชน เพื่อยกระดับสุขภาพเด็กไทยอย่างยั่งยื่น
+        </p>
+
+        <!-- ย้าย services มาไว้ตรงนี้ -->
+        <section class="services">
+    <div class="service-card fancy color1">
+        <h3>คลีนิกโรคติดเชื้อเด็ก</h3>
+        <p> ทุกวันจันทร์ 8.30–12.00น.ที่ ห้องตรวจพิเศษเด็ก 1 ชั้น 6 อาคารศรีพัฒน์ ยกเว้นวันหยุดราชการ</p>
+    </div>
+
+    <div class="service-card fancy color2">
+        <h3>บริการตรวจ รักษา</h3>
+        <p>ผู้ป่วยในหอผู้ป่วยเด็กที่เป็นโรคติดเชื้อต่างๆ ดูแลผู้ป่วยที่ได้รับการวินิจฉัยด้วยโรค ทางการติดเชื้อเพื่อประเมินการเปลี่ยนแปลงต่างๆทุกวัน</p>
+    </div>
+
+    <div class="service-card fancy color3">
+        <h3>ให้คำปรึกษา</h3>
+        <p>เกี่ยวกับโรคติดเชื้อ เอชไอวี และวัณโรค รวมถึงคำแนะนำการใช้ยาต้านไวรัส การดูแลผู้ป่วย 
+            การปฏิบัติตัวอย่างเหมาะสม และการสนับสนุนด้านจิตสังคมแก่ผู้ป่วยและครอบครัว</p>
+    </div>
+        </section>
+    </div>
+    
+    <div class="about-right">
+        <img src="IMG_1047.jpg" alt="Division Image">
+    </div>
+</section>
+
+<section>
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+<!-- Slide 1 -->
+        <div class="swiper-slide">
+            <div class="slide-box">
+                <div class="slide-left">
+                    <h2>สถานการณ์การระบาดของ “โรคติดเชื้อไวรัสฮันตา (Hantavirus)”</h2>
+                    <p>ข้อมูลล่าสุด ณ วันที่ 13 พฤษภาคม 2569</p>
+
+                    <p> ในเดือนพฤษภาคม 2569 องค์การอนามัยโลก (WHO) รายงานการระบาดเป็นกลุ่มก้อนของเชื้อ Andes hantavirus ที่เกี่ยวข้องกับเรือสำราญ MV Hondius โดยพบผู้ป่วยอย่างน้อย 11 ราย
+                         และมีผู้เสียชีวิต 3 ราย ทำให้หลายประเทศเพิ่มมาตรการเฝ้าระวังอย่างใกล้ชิด โรคนี้คืออะไร? ไวรัสฮันตาเป็นโรคติดต่อจากสัตว์สู่คน โดยมี หนูและสัตว์ฟันแทะ เป็นแหล่งรังโรคหลัก 
+                         ผู้ติดเชื้อส่วนใหญ่มักได้รับเชื้อจากการสัมผัสหรือสูดดมฝุ่นที่ปนเปื้อน ปัสสาวะ อุจจาระ หรือสารคัดหลั่งของหนู โดยทั่วไปไม่ติดต่อจากคนสู่คน ยกเว้นบางสายพันธุ์ เช่น Andes virus
+                         แม้โรคติดเชื้อไวรัสฮันตาจะมีความรุนแรงและอาจเสียชีวิตได้ แต่ WHO ยังประเมินว่าความเสี่ยงต่อประชาชนทั่วไปอยู่ในระดับต่ำ และยังไม่มีสัญญาณของการระบาดใหญ่ระดับโลก 
+                         โดยการป้องกันตนเองและหลีกเลี่ยงการสัมผัสสารคัดหลั่งของหนูยังคงเป็นวิธีลดความเสี่ยงที่ดีที่สุด.
+                    
+                    </p>
+                    <a class="read-btn" href="https://www.med.cmu.ac.th/web/forhealth/health-and-medical/28674/?fbclid=IwZnRzaARzjypleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAo2NjI4NTY4Mzc5AAEenoxaQIau36JdeXCHcXRijPfiFF0P4iLWxC7rLY5s31nQD-hZtlDoA7JJDYs_aem_te60ictW7WS5cqdKmcMq9A" >Read more</a>
+                </div>
+
+                <img src="hunta.png" class="slide-img">
+            </div>
+        </div>
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+            <div class="slide-box">
+                <div class="slide-left">
+                    <h2>“อีโบลา” ยังระบาดในแอฟริกา แพทย์ มช.ชี้ ไทยยังเสี่ยงต่ำแต่ควรระวังพร้อมเผยจุดสังเกต สำคัญอีโบลา vs ไข้เลือดออก ต่างกันยังไง?</h2>
+                    <p>
+                        โรคอีโบลาเกิดจากเชื้อไวรัส Ebola เป็นโรคไข้เลือดออกชนิดรุนแรง มีอัตราการเสียชีวิตสูงติดต่อผ่านการสัมผัสเลือด สารคัดหลั่ง หรือเนื้อเยื่อของผู้ติดเชื้อและสัตว์ติดเชื้อ 
+                        ไม่แพร่ทางอากาศ เหมือนไข้หวัดหรือโควิด-19 ปัจจุบันยังพบการระบาดในหลายพื้นที่ของทวีปแอฟริกา โดยเฉพาะคองโกและยูกานดา ไทยประกาศเฝ้าระวังผู้เดินทางจากพื้นที่เสี่ยงอย่างเข้มงวด 
+                        ตั้งแต่ 21 พฤษภาคม 2569 อาการเริ่มต้น ได้แก่ ไข้สูงเฉียบพลัน อ่อนเพลีย ปวดศีรษะ ปวดกล้ามเนื้อ เจ็บคอ ก่อนลุกลามเป็นอาเจียน ท้องเสีย และอาจมีเลือดออกหลายตำแหน่งระยะฟักตัวอยู่ที่ 
+                        2–21 วัน ผู้ที่เดินทางกลับจากพื้นที่เสี่ยงหรือสัมผัสผู้ป่วย หากมีไข้และอาการผิดปกติควรรีบพบแพทย์ทันทีกลุ่มเสี่ยงสูง ได้แก่ ผู้ดูแลผู้ป่วย บุคลากรทางการแพทย์ ผู้เดินทางไปพื้นที่ระบาด 
+                        และผู้สัมผัสศพผู้เสียชีวิตจากอีโบลาการป้องกันที่สำคัญคือ ล้างมือสม่ำเสมอ หลีกเลี่ยงการสัมผัสสารคัดหลั่ง และติดตามข้อมูลจากหน่วยงานสาธารณสุขปัจจุบันมีวัคซีนสำหรับป้องกันอีโบลาบางสายพันธุ์ในกลุ่มเสี่ยงสูง 
+                        และหากได้รับการรักษาอย่างรวดเร็ว โอกาสรอดชีวิตจะเพิ่มขึ้น
+                    </p>
+                    <a class="read-btn" href="https://www.med.cmu.ac.th/web/news-event/news/hilight-news/28751/" >Read more</a>
+                </div>
+
+                <img src="News_ebola.png" class="slide-img">
+            </div>
+        </div>        
+
+        <!-- Slide2 -->
+        <div class="swiper-slide">
+            <div class="slide-box">
+                <div class="slide-left">
+                    <h2>สถานการณ์โรคไข้หวัดนก (Avian influenza)</h2>
+                    <p>ข้อมูล ณ วันที่ 1 เมษายน 2569 จาก กองระบาดวิทยา กรมควบคุมโรค</p>
+                    <p>
+                        โรคไข้หวัดนกเกิดจากการติดเชื้อไวรัสไข้หวัดใหญ่สายพันธุ์ A ที่พบในสัตว์ปีกและสัตว์เลี้ยงลูกด้วยนม
+                        โดยสายพันธุ์ที่มีรายงานพบบ่อยที่สุดในคน คือ H5, H7 และ H9 โดยเฉพาะสายพันธุ์H5N1 และ H7N9 ซึ่ง
+                        เป็นชนิดที่ท าให้มีอาการรุนแรง และมีอัตราป่วยตายสูง แม้สถานการณ์โรคไข้หวัดนกในประเทศไทยยังไม่พบ
+                        การรายงานผู้ป่วยยืนยันตั้งแต่ปี 2549 แต่ประเทศเพื่อนบ้านยังคงมีการรายงานผู้ป่วยโรคไข้หวัดนกสายพันธุ์
+                        H5N1 อย่างต่อเนื่อง โดยในปี 2569 พบเหตุการณ์การระบาดของโรคไข้หวัดนกในประเทศกัมพูชาเกิดขึ้นใน
+                        พื้นที่จังหวัดที่มีพรมแดนติดกับประเทศไทยในจังหวัดสระแก้ว บุรีรัมย์ สุรินทร์ และศรีสะเกษ
+                        นอกจากนั้น ในช่วงปลายปี 2568 ยังมีการรายงานของโรคไข้หวัดนกชนิดไม่รุนแรง (H9N2) เพิ่มมาก
+                        ขึ้นในประเทศจีน โดยมีอาการแสดงในไก ่และในคนเพียงเล็กน้อย ประเทศไทยจึงควรมีการเฝ้าระวังและ
+                        ติดตามสถานการณ์โรคไข้หวัดนกทุกสายพันธุ์อย่างต่อเนื่อง เพื่อเตรียมความพร้อมส าหรับการป้องกันควบคุม
+                        โรคได้อย่างทันท่วงที
+                    </p>
+                    <a class="read-btn" href="hottopic1.html">Read more</a>
+                </div>
+
+                <img src="1-Bird-Flu-Virus_-One-Mutation-Away-From-Becoming-More-Dangerous-Source-scitechdaily.com_-1024x683.webp" class="slide-img">
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+            <div class="slide-box">
+                <div class="slide-left">
+                    <h2>โรคพิษสุนัขบ้า (Rabies)</h2>
+                    <p>ข้อมูล ณ วันที่ 25 กุมภาพันธ์ 2569 จาก กองระบาดวิทยา กรมควบคุมโรค</p>
+                    <p>โรคพิษสุนัขบ้า (Rabies) เป็นโรคติดต่อระหว่างสัตว์สู่คน เกิดจากเชื้อ Rabies virus ซึ่งพบได้ในสัตว์
+                        เลี้ยงลูกด้วยนม โดยเฉพาะสุนัข และแมว สามารถติดติอด้วยการถูกสัตว์ที่ติดเชื้อกัดหรือข่วน โรคพิษสุนัขบ้า
+                        ส่งผลกระทบต่อระบบประสาทส่วนกลางเป็นหลัก ทําให้เกิดโรคทางสมองอย่างรุนแรงและเสียชีวิตได้ หาก
+                        ไม่ได้รับการรักษาพยาบาลก่อนที่อาการจะเริ่มปรากฏ โดยอัตราการเสียชีวิตของโรคนี้อยู่ที่ร้อยละ 100 ถือเป็น
+                        โรคที่มีความรุนแรงสูงและเป็นภัยคุกคามร้ายแรงต่อสุขภาพของประชาชน แต่เป็นโรคที่สามารถป้องกันได้หาก
+                        มีการดูแลหลังถูกสัตว์กัดและได้รับวัคซีนป้องกันโรคอย่างเหมาะสม
+                    </p>
+                    <a class="read-btn" href="Hottopic2.html">Read more</a>
+                </div>
+
+                <img src="2024-01_7919a5adcb647f8.jpg" class="slide-img">
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+            <div class="slide-box">
+                <div class="slide-left">
+                    <h2>โรคติดเชื้อนิวโมคอคคัสในเด็กไทย</h2>
+                    <p>กองระบาดวิทยา กรมควบคุมโรค</p>
+                    <p>โรคติดเชื้อในระบบทางเดินหายใจเฉียบพลันเป็นหนึ่งในสาเหตุสำคัญของการเสียชีวิตในเด็ก โดยส่วนใหญ่มักเกิดจากการติดเชื้อแบคทีเรีย 
+                        Streptococcus pneumoniae ซึ่งพบได้บ่อยทั้งในเด็กและผู้สูงอายุ โดยเฉพาะในเด็กที่มีอัตราการเป็นพาหะของเชื้อในระดับสูง
+                        หากร่างกายมีภูมิคุ้มกันอ่อนแอ หรือเชื้อแพร่กระจายเข้าสู่อวัยวะสำคัญ อาจนำไปสู่การเกิดโรคติดเชื้อนิวโมคอคคัสชนิดรุนแรง 
+                        ซึ่งเพิ่มความเสี่ยงต่อการเสียชีวิตและการเกิดความพิการในระยะยาวได้ ทั้งนี้ โรคดังกล่าวยังคงเป็นสาเหตุของการเสียชีวิตของเด็กหลายแสนรายทั่วโลกในแต่ละปี
+                    </p>
+                    <a class="read-btn" href="Hottopic3.html">Read more</a>
+                </div>
+
+                <img src="messageImage_1777604829150.jpg" class="slide-img">
+            </div>
+        </div>       
+
+
+
+    </div>
+
+    <!-- Navigation buttons (ต้องอยู่ใน .mySwiper เท่านั้น!) -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+
+    <!-- Pagination dots -->
+    <div class="swiper-pagination"></div>
+</div>
+</section>
+
+
+<section id ="newsevent" class="news-section">
+    <h2 class="news-title">NEWS & EVENTS</h2>
+
+    <div class="news-grid">
+
+        <div class="news-card">
+            <img src="IMG_0566 สำเนา.jpg" alt="News 1">
+            <h3>ขอแสดงความยินดีเป็นอย่างยิ่งกับพญ.ภัทรานันท์ กุศลธรรมรัตน์ </h3>
+            <p>แพทย์ประจำบ้านต่อยอด (Fellow) สาขาโรคติดเชื้อ ชั้นปีที่ 2 ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่ </p>
+            <br>ในโอกาสได้รับรางวัลชนะเลิศอันดับที่ 1 การนำเสนอผลงานวิจัยด้วยวาจา (Oral Presentation) จากผลงานวิจัยเรื่อง 
+            "Cardiac morphology and function among Thai youth and young adults with perinatally acquired HIV" 
+            ในงานประชุมใหญ่ประจำปีครั้งที่ 30 ของสมาคมโรคติดเชื้อในเด็กแห่งประเทศไทย </br>
+            <a href="News1.html" class="news-btn">➤ Read more</a>
+        </div>
+        <div class="news-card">
+            <img src="S__61833226.jpg" alt="News 2">
+        
+            <h3>ขอแสดงความยินดีเป็นอย่างยิ่งกับ นพ.ฉัทดนัย จันโทวงษ์</h3>
+            <p>แพทย์ประจำบ้านสาขากุมารเวชศาสตร์ ชั้นปีที่ 3 ได้รับคัดเลือกให้เป็นตัวแทนของภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</p>  
+            <br>นำเสนอผลงานวิจัยด้วยวาจา (Oral presentation) เรื่อง "Diagnostic Accuracy, Satisfaction, and Acceptability of Point-of-Care Testing for Syphilis, Hepatitis B, 
+                and Hepatitis C Infections among Thai Adolescents and Young Adults with Sexual Risk Behaviors"</br>
+            <a href="News2.html" class="news-btn">➤ Read more </a>
+        </div>
+
+        <div class="news-card">
+            <img src="S__79257637.jpg" alt="News 3">
+            <h3>พญ.ภัทรานันท์ กุศลธรรมรัตน์ </h3>
+            <p>แพทย์ประจำบ้านต่อยอด (Fellow) สาขาโรคติดเชื้อ ชั้นปีที่ 2
+        ภาควิชากุมารเวชศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
+            <br>ได้เดินทางไปศึกษาดูงาน (Observership program) ณ Perth Children's Hospital ประเทศออสเตรเลีย เมื่อเดือนมีนาคม 2569 
+        เพื่อเป็นการเพิ่มพูนทักษะการรักษาโรคติดเชื้อซับซ้อนและนำประสบการณ์มาพัฒนาการดูแลผู้ป่วยต่อไป</br>
+            <a href="News3.html" class="news-btn">➤ Read more </a>
+        </div>
+
+        
+
+    </div>
+</section>
+<style>.icon {
+    width: 70px;   /* ปรับให้เล็กลง */
+    height: 70px;  /* หรือเอา height ออกให้ auto */
+}</style>
+<section class="public-section">
+    <div class="public-card blue">
+        <img src="hospital_1501457.png" class="icon">
+        <h2>ทำความรู้จักกับสาขาวิชาโรคติดเชื้อ</h2>
+        <p>สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
+        <a href="public.html" class="btn-read">➤ Click to learn more about us</a>
+    </div>
+</section>
+<section class="info-section">
+    <div class="info-card pink">
+        <img src="doctor_2637687.png" class="icon">
+        <h2>บทความวิชาการที่เกี่ยวข้องกับโรคติดเชื้อ</h2>
+        <a href="info.html" class="btn-learn">➤ Read more</a>
+    </div>
+
+    <div class="info-card teal">
+        <img src="inspiration_12057092.png" class="icon">
+        <h2>Topic review</h2>
+        <a href="topic.html" class="btn-read">➤ Read more</a>
+    </div>
+    <div class="info-card lightpink">
+        <img src="clinical-trials_18465548.png" class="icon">
+        <h2>interesting Case<br>เคสทางคลินิกที่น่าสนใจ</h2>
+        <a href="interesting.html" class="btn-read">➤ Read more</a>
+    </div>
+</section>
+<section class="quiz-section">
+    <div class="quiz-icontitle"><img src="ideas_icon-icons.com_51068.webp" class="icon"></div> 
+
+    <div class="quiz-card fancy">
+        <div class="quiz-icon"><img src="question_ask.png" class="icon"></div>
+
+        <div class="quiz-content">
+            <h3>Interesting Case Quiz</h3>
+            <p>ทดสอบความรู้จากเคสจริงของสาขาวิชาโรคติดเชื้อ</p>
+
+            <a href="quiz.html" class="quiz-btn">Start Quiz</a>
+        </div>
+    </div>
+
+</section>
+<section id = "RESEARCH" class = "research-menu">
+    <h2>RESEARCH</h2>
+    <div class="research-grid">
+        <a href="#" target="_blank"class="research-card color1">
+            <h3>PREVENT ID CENTER</h3>
+            <p>#Linkไปยังศูนย์</p>
+        </a>
+
+        <a href="research_overview.html"target="_blank"class="research-card color2">
+            <h3>Research Overview</h3>
+            <p>ภาพรวมงานวิจัย</p>
+        </a>
+
+        <a href="research_projects.html"target="_blank"class="research-card color3">
+            <h3>Ongoing Projects</h3>
+            <p>โครงการวิจัยที่กำลังดำเนินการ</p>
+        </a>
+
+        <a href="publications.html" target="_blank"class="research-card color4">
+            <h3>Publications</h3>
+            <p>ผลงานตีพิมพ์</p>
+        </a>
+
+    </div>
+</section>
+<section class="personnel-section">
+    <div class="personnel-container">
+
+        <div class="personnel-left">
+            <img src="integrity_3317711.png" alt="personnel photo">
+        </div>
+
+        <div class="personnel-right">
+            <h2>บุคลากรของเรา</h2>
+
+            <p>
+                แพทย์และบุคลากรทางการแพทย์
+            </p>
+
+            <a class="personnel-btn" href="personal.html">
+                คลิกเพื่อดูรายชื่อบุคลากร
+            </a>
+        </div>
+    </div>
+</section>
+<section class="alumni-hero">
+    <div class="alumni-hero-content">
+        <h1>Our Alumni</h1>
+        <p>รายชื่อศิษย์เก่าที่เคยร่วมงานและสร้างผลงานร่วมกับทีมของเรา</p>
+
+        <a href="ouralumni.html" class="btn-alumni">
+            คลิกเพื่อดูรายชื่อ
+        </a>
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+
+    <div class="contact-container">
+
+        <!-- LEFT FORM -->
+        <div class="contact-form">
+            <h2>ติดต่อเรา</h2>
+
+            <form>
+
+                <input type="text" placeholder="ชื่อ" required>
+                <input type="text" placeholder="นามสกุล" required>
+                <input type="email" placeholder="อีเมล" required>
+                <input type="text" placeholder="โทรศัพท์">
+
+                <select>
+                    <option>ระบุรายละเอียด</option>
+                    <option>สอบถามข้อมูล</option>
+                    <option>ติดต่อหน่วยงาน</option>
+                    <option>อื่น ๆ</option>
+                </select>
+
+                <input type="text" placeholder="หน่วยงาน">
+
+                <div class="file-box">
+                    <input type="text" placeholder="แนบไฟล์" class="file-text" disabled>
+                    <label class="file-btn">
+                        เลือกไฟล์
+                        <input type="file" hidden>
+                    </label>
+                </div>
+
+                <textarea placeholder="รายละเอียด"></textarea>
+
+                <button type="submit" class="submit-btn">ตกลง</button>
+
+            </form>
+        </div>
+
+        <!-- RIGHT INFO -->
+        <div class="contact-info">
+            <p>
+                สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่<br>
+
+            </p>
+            <p>
+                อาคาร บุญสมมาติน ชั้น 6 110 ถ.อินทวโรรส <br>
+                ต.ศรีภูมิ อ.เมือง จ.เชียงใหม่ 50200
+            </p>
+            <p>โทรศัพท์/โทรสาร 053936470</p>
+
+            <h3>ติดต่อเรา</h3>
+
+            <div class="social-icons">
+                <a href="https://www.facebook.com/ชื่อเพจหรือโปรไฟล์" target="blank">
+                    <img src="facebook-social-media-icon-design-template-vector-22339895.webp" alt="Facebook">
+                </a>
+                <a href="mailto:example@email.com">
+                    <img src="1657906274logo-gmail-png.webp" alt="Email">
+                </a>
+                <a href="https://line.me/ti/p/ไอดีไลน์" target="blank">
+                    <img src="LINE_New_App_Icon_(2020-12).png" alt="Line">
+                 </a>
+            </div>
+
+            <img src="IMG_0282 สำเนา.JPG"class="contact-logo">
+        </div>
+
+    </div>
+</section>
+<script>
+/* --- OPEN MODAL --- */
+function openModal(mode) {
+    document.getElementById("popupModal").style.display = "flex";
+    switchTab(mode);
+}
+
+/* --- CLOSE MODAL --- */
+function closeModal() {
+    document.getElementById("popupModal").style.display = "none";
+}
+
+/* --- TOGGLE PASSWORD --- */
+function togglePassword(id) {
+    let field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+}
+
+/* --- SWITCH TAB --- */
+function switchTab(tab) {
+    const loginTab = document.getElementById("tabLogin");
+    const regTab = document.getElementById("tabRegister");
+    const loginForm = document.getElementById("loginForm");
+    const regForm = document.getElementById("registerForm");
+
+    if (tab === "login") {
+        loginTab.classList.add("active");
+        regTab.classList.remove("active");
+        loginForm.style.display = "block";
+        regForm.style.display = "none";
+    } else {
+        regTab.classList.add("active");
+        loginTab.classList.remove("active");
+        loginForm.style.display = "none";
+        regForm.style.display = "block";
+    }
+}
+
+/* --- CLOSE WHEN CLICK OUTSIDE --- */
+window.onclick = function(event) {
+    const modal = document.getElementById("popupModal");
+    if (event.target === modal) closeModal();
+};
+
+
+// ----- CLOSE POPUP WHEN CLICK OUTSIDE -----
+window.onclick = function(event) {
+    let loginModal = document.getElementById("loginModal");
+    let regModal = document.getElementById("registerModal");
+
+    if (event.target === loginModal) loginModal.style.display = "none";
+    if (event.target === regModal) regModal.style.display = "none";
+};
+
+// CONTENT
+document.getElementById("contentMenu").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("contentDropdown").classList.toggle("show");
+});
+
+// Close when clicking outside
+document.addEventListener("click", function(e) {
+    const aboutMenu = document.getElementById("aboutMenu");
+    const aboutDropdown = document.getElementById("aboutDropdown");
+    const contentMenu = document.getElementById("contentMenu");
+    const contentDropdown = document.getElementById("contentDropdown");
+
+    if (!aboutMenu.contains(e.target) && !aboutDropdown.contains(e.target)) {
+        aboutDropdown.classList.remove("show");
+    }
+
+    if (!contentMenu.contains(e.target) && !contentDropdown.contains(e.target)) {
+        contentDropdown.classList.remove("show");
+    }
+});
+</script>
+
+<script>
+function goQuiz() {
+    window.location.href = "PHOTO QUIZ.html";
+}
+</script>
+
+<style>
+.dropdown-menu {
+    display: none;
+}
+.dropdown-menu.show {
+    display: block;
+}
+</style>
+
+<script>
+// ----- ABOUT US DROPDOWN -----
+document.getElementById("aboutMenu").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("aboutDropdown").classList.toggle("show");
+});
+
+// คลิกนอกเมนูให้ปิด
+document.addEventListener("click", function(e) {
+    const menu = document.getElementById("aboutMenu");
+    const dropdown = document.getElementById("aboutDropdown");
+
+    if (!menu.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove("show");
+    }
+});
+</script>
+
+<script>
+// เปิด/ปิด dropdown News/Events
+document.getElementById("newsMenu").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("newsDropdown").classList.toggle("show");
+});
+
+// ปิด dropdown เมื่อคลิกออก
+document.addEventListener("click", function(e) {
+    const menu = document.getElementById("newsMenu");
+    const dropdown = document.getElementById("newsDropdown");
+
+    if (!menu.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove("show");
+    }
+});
+</script>
+
+<script>
+// เปิด/ปิด dropdown Research
+document.getElementById("research").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("researchDropdown").classList.toggle("show");
+});
+
+// ปิด dropdown เมื่อคลิกนอก
+document.addEventListener("click", function(e) {
+    const menu = document.getElementById("research");
+    const dropdown = document.getElementById("researchDropdown");
+
+    if (!menu.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove("show");
+    }
+});
+</script>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+});
+</script>
+<script>
+var heroSwiper = new Swiper(".heroSwiper", {
+    loop: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+
+/*search*/
+
+document.querySelector(".search").addEventListener("click", function() {
+    let box = document.getElementById("searchBar");
+    box.style.display = (box.style.display === "flex") ? "none" : "flex";
+});
+</script>
+</body>
+</html>
+

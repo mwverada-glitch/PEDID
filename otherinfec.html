@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Other/Unusual infectious</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<style>
+.dropdown-wrapper {
+    position: relative;
+}
+.dropdown-wrapper:hover .dropdown-menu {
+    display: block;
+}</style>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left">สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+        <div class="right">
+            <li class="login-btn"><a href="#" onclick="openLoginModal()">เข้าสู่ระบบ</a></li>
+            <li class="register-btn"><a href="#" onclick="openRegisterModal()">ลงทะเบียน</a></li>
+            <button class="lang">TH</button>
+            <button class="lang">EN</button>
+        </div>
+    </div>
+    
+    <!-- LOGIN POPUP -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeLoginModal()">&times;</span>
+
+        <h2 class="login-title">เข้าสู่ระบบ</h2>
+
+        <label>อีเมล</label>
+        <input type="email" placeholder="อีเมล">
+
+        <label>รหัสผ่าน</label>
+        <div class="password-box">
+            <input type="password" id="passwordInput" placeholder="รหัสผ่าน">
+            <span class="toggle-eye" onclick="togglePassword()">👁</span>
+        </div>
+
+        <a href="#" class="forgot">ลืมรหัสผ่าน ?</a>
+
+        <button class="login-submit">เข้าสู่ระบบ</button>
+    </div>
+</div>
+<!-- REGISTER POPUP -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeRegisterModal()">&times;</span>
+
+        <h2 class="login-title">ลงทะเบียน</h2>
+
+        <label>ชื่อ-นามสกุล</label>
+        <input type="text" placeholder="ชื่อจริง-นามสกุล">
+
+        <label>อีเมล</label>
+        <input type="email" placeholder="อีเมล">
+
+        <label>รหัสผ่าน</label>
+        <div class="password-box">
+            <input type="password" id="regPassword" placeholder="รหัสผ่าน">
+            <span class="toggle-eye" onclick="toggleRegisterPassword()">👁</span>
+        </div>
+
+        <label>ยืนยันรหัสผ่าน</label>
+        <div class="password-box">
+            <input type="password" id="regPassword2" placeholder="ยืนยันรหัสผ่าน">
+            <span class="toggle-eye" onclick="toggleRegisterPassword2()">👁</span>
+        </div>
+
+        <button class="login-submit">ลงทะเบียน</button>
+    </div>
+</div>
+<!-- HEADER -->
+<header>
+    <div class="logo-area">
+        <div class="logo-circle">
+            <img src="OIP2.webp" alt="PED CMU">
+        </div>
+
+        <div class="logo-round">
+            <img src="S__55492628.jpg" alt="PED Unit">
+        </div>
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html">HOME</a>
+
+        <!-- ABOUT US -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">ABOUT US ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="aboutus1.html">สาขาวิชาโรคติดเชื้อ</a></li>
+                <li><a href="aboutuscenter.html">ศูนย์โรคติดเชื้อเด็ก</a></li>
+                <li><a href="aboutussite.html">เว็บไซต์ที่เกี่ยวข้อง</a></li>
+            </ul>
+        </div>
+
+        <!-- OUR TEAM -->
+        <a href="personal.html">OUR TEAM ▾</a>
+
+        <!-- CONTENT -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">CONTENT ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="Guideline.html">Guideline</a></li>
+                <li><a href="Case Study.html">Case Study</a></li>
+
+                <!-- Submenu -->
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">Medical content ▾</a>
+                    <ul class="submenu">
+                        <li><a href="Medical content.html">Medical content</a></li>
+                        <li><a href="Medical content.html">ความรู้ทั่วไป</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="Workshop.html">Education Training</a></li>
+            </ul>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">RESEARCH ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="research_overview.html">Research Overview</a></li>
+                <li><a href="research_projects.html">Ongoing Projects</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </div>
+
+        <!-- NEWS -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">NEWS / EVENTS ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="Event.html">EVENTS</a></li>
+                <li><a href="News3.html">ประกาศ / ดาวน์โหลด</a></li>
+            </ul>
+        </div>
+
+        <a href="contact.html">CONTACT US</a>
+        <span class="search">🔍</span>
+
+    </nav>
+</header>
+
+<style>
+/* สี */
+.pink { background-color: lemonchiffon; }
+.btn-read,
+.btn-learn {
+    display: inline-block;
+    margin-top: 30px;
+    background: white;
+    color: #003d6a;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid white;
+}
+.related-section {
+    padding: 60px 40px;
+    background: #f5fbff;
+    text-align: center;
+    font-family: "Prompt", sans-serif;
+}
+
+.related-section h2 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #003d6a;
+    margin-bottom: 40px;
+}
+/* ICON */
+.icon {
+    width: 70px;   /* ปรับให้เล็กลง */
+    height: 70px;  /* หรือเอา height ออกให้ auto */
+}
+</style>
+<section class="related-section">
+    <h2>Other/Unusual infectious</h2>
+<section class="info-section">
+    <div class="info-card pink">
+        <img src="kids_14976398.png" alt="" class="icon">
+        <h2>...</h2>
+        <p>
+            ....
+        </p>
+        <a href="Interhospital conference_JE CMU_23Feb2024_final.pdf" class="btn-learn">➤ Read more</a>
+    </div>
+
+    <div class="info-card teal">
+        <h2>TOPIC</h2>
+        <img src="topic-icon.png" class="icon">
+        <p>something Topic......</p>
+        <a href="topic.html" class="btn-read">➤ Read more</a>
+    </div>
+
+</section>
+
+</body>
+</html>
+
+
+

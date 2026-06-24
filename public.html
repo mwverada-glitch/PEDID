@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ทำความรู้จักกับสาขาวิชาโรคติดเชื้อ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+
+</head>
+<style>
+.dropdown-wrapper {
+    position: relative;
+}
+.dropdown-wrapper:hover .dropdown-menu {
+    display: block;
+}</style>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left">สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+        <div class="right">
+<!-- DEMO BUTTONS -->
+            <button class="btn-primary" onclick="openModal('login')">เข้าสู่ระบบ</button>
+            <button class="btn-primary" onclick="openModal('register')">ลงทะเบียน</button>
+            <button class="lang">TH</button>
+            <button class="lang">EN</button>
+        </div>
+    </div>
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div id="tabLogin" class="tab active" onclick="switchTab('login')">เข้าสู่ระบบ</div>
+            <div id="tabRegister" class="tab" onclick="switchTab('register')">ลงทะเบียน</div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="loginPass" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('loginPass')">👁</span>
+            </div>
+
+            <button class="submit-btn">เข้าสู่ระบบ</button>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display:none;">
+
+            <label>ชื่อ-นามสกุล</label>
+            <input type="text" placeholder="ชื่อจริง-นามสกุล">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass1" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass1')">👁</span>
+            </div>
+
+            <label>ยืนยันรหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass2" placeholder="ยืนยันรหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass2')">👁</span>
+            </div>
+
+            <button class="submit-btn">ลงทะเบียน</button>
+        </div>
+
+    </div>
+</div>
+<!-- HEADER -->
+<header>
+    <div class="logo-area">
+        <div class="logo-circle">
+            <img src="OIP2.webp" alt="PED CMU">
+        </div>
+
+        <div class="logo-round">
+            <img src="S__55492628.jpg" alt="PED Unit">
+        </div>
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html">HOME</a>
+
+        <!-- ABOUT US -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">ABOUT US ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="aboutus1.html">สาขาวิชาโรคติดเชื้อ</a></li>
+                <li><a href="aboutuscenter.html">ศูนย์โรคติดเชื้อเด็ก</a></li>
+                <li><a href="aboutussite.html">เว็บไซต์ที่เกี่ยวข้อง</a></li>
+            </ul>
+        </div>
+
+        <!-- OUR TEAM -->
+        <a href="personal.html">OUR TEAM ▾</a>
+
+        <!-- CONTENT -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">CONTENT ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="Guideline.html">Guideline</a></li>
+                <li><a href="Case Study.html">Case Study</a></li>
+
+                <!-- Submenu -->
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">Medical content ▾</a>
+                    <ul class="submenu">
+                        <li><a href="Medical content.html">Medical content</a></li>
+                        <li><a href="Medical content.html">ความรู้ทั่วไป</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="Workshop.html">Education Training</a></li>
+            </ul>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">RESEARCH ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="research_overview.html">Research Overview</a></li>
+                <li><a href="research_projects.html">Ongoing Projects</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </div>
+
+        <!-- NEWS -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">NEWS / EVENTS ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="Event.html">EVENTS</a></li>
+                <li><a href="News3.html">ประกาศ / ดาวน์โหลด</a></li>
+            </ul>
+        </div>
+        <a href="contact.html">CONTACT US</a>
+        <span class="search">🔍</span>
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="พิมพ์เพื่อค้นหา...">
+            <button type="button" id="searchBtn">ค้นหา</button>
+            <div id="searchResults"></div>
+        </div>
+
+    </nav>
+</header>
+
+<section class="about-infectious">
+
+    <div class="about-header">
+        <h2>🦠 เกี่ยวกับสาขาวิชาโรคติดเชื้อ</h2>
+        <p>
+            (Division Of Infectious Diseases)
+        </p>
+    </div>
+
+    <div class="about-card">
+        <p>
+            สาขาวิชาโรคติดเชื้อให้บริการตรวจ วินิจฉัย รักษา และให้คำปรึกษาครอบคลุมโรคติดเชื้อทุกชนิด โดยเฉพาะโรคเอชไอวีและวัณโรค ทั้งในผู้ป่วยนอกและผู้ป่วยใน 
+            รวมถึงการดูแลผู้ป่วยเด็ก การตรวจค้นหาเด็กสัมผัสวัณโรค และการติดตามประเมินอาการผู้ป่วยที่เข้ารับการรักษาในหอผู้ป่วยเด็ก โดยทีมแพทย์และพยาบาลผู้เชี่ยวชาญ 
+            นอกจากนี้ยังให้บริการรับปรึกษาจากหน่วยงานต่าง ๆ พร้อมให้คำแนะนำด้านการใช้ยาต้านไวรัส การดูแลผู้ป่วย และสนับสนุนด้านจิตสังคมแก่ผู้ป่วยและครอบครัว 
+            เพื่อให้ได้รับการดูแลที่ครบวงจรและมีคุณภาพที่สุด
+        </p>
+    </div>
+
+</section>
+
+<section class="vision-mission">
+
+    <div class="vision-card">
+
+        <div class="vm-icon">🌟</div>
+
+        <h3>วิสัยทัศน์</h3>
+
+        <p>
+            สาขาวิชาโรคติดเชื้อเป็นหนึ่งในหน่วยงานของภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่
+            ซึ่งเป็นสถาบันทางการแพทย์ในดวงใจ ระดับมาตรฐานสากล
+        </p>
+
+    </div>
+
+    <div class="mission-card">
+
+        <div class="vm-icon">🎯</div>
+
+        <h3>พันธกิจ</h3>
+        <p>พันธกิจหลักสูตรการฝึกอบรมแพทย์ประจำบ้านต่อยอดเพื่อวุฒิบัตรแสดงความรู้ความชำนาญ
+            ในการประกอบวิชาชีพเวชกรรม อนุสาขากุมารเวชศาสตร์โรคติดเชื้อ</p>
+        <br> พันธกิจของหลักสูตร คือ การผลิตกุมารแพทย์ผู้เชี่ยวชาญด้านโรคติดเชื้อที่ <br>
+
+        <ul>
+            <li>มีความรู้ความสามารถในการดูแลและบริบาลผู้ป่วยเด็กที่ประสบปัญหาโรคติดเชื้ออย่างถูกต้องและเหมาะสม</li>
+            <li>มีความรู้พื้นฐานด้านจุลชีววิทยาและภูมิคุ้มกันวิทยา</li>
+            <li>มีทักษะในการพิจารณาและส่งตรวจทางห้องปฏิบัติการเพื่อการวินิจฉัยและรักษาอย่างมีประสิทธิภาพ</li>
+            <li>ความสามารถในการปฏิบัติงานในชุมชนและรับใช้สังคมอย่างเต็มที่ เพื่อตอบสนองต่อการเปลี่ยนแปลงในระบบสาธารณสุข
+                ของประเทศ และสอดคล้องกับมาตรฐานระดับชาติในการป้องกันและดูแลโรคติดเชื้อที่มีความเหมาะสมกับบริบทของ
+                ทรัพยากรและเศรษฐกิจของประเทศ โดยเฉพาะในเขตพื้นที่ภาคเหนือตอนบน</li>
+            <li>มีทักษะและความสามารถด้านการวิจัยเกี่ยวกับโรคติดเชื้อในเด็ก ความรู้ทางด้านระบาดวิทยาคลินิก 
+                การป้องกันโรค และการสร้างเสริมภูมิคุ้มกันด้วยวัคซีนอย่างมีประสิทธิภาพ</li>
+            <li>มีความใฝ่รู้ ศึกษาต่อเนื่อง มีทักษะในการเพิ่มพูนความรู้อย่างสม่่าเสมอตลอดชีวิต เพื่อให้ทันยุคสมัย ความก้าวหน้าทางวิทยาการ และการเปลี่ยนแปลงทางสังคม</li>
+            <li>สามารถสร้างองค์ความรู้ใหม่เพื่อเป็นแหล่งอ้างอิงทางวิชาการ และพัฒนาองค์ความรู้เพื่อร่วมก่าหนดทิศทางของระบบสุขภาพทั้งในระดับประเทศและระดับนานาชาติ</li>
+            <li> มีเจตคติที่ดีต่อวิชาชีพ มีคุณธรรม จริยธรรม เอื้ออาทร และใส่ใจในการแก้ไขปัญหาและการส่งเสริมสุขภาพของผู้ป่วย 
+                โดยยึดถือผู้ป่วยเป็นศูนย์กลางบนพื้นฐานของการดูแลแบบองค์รวม</li>
+            <li>สามารถปฏิบัติงานแบบมืออาชีพด้วยตนเองโดยไม่ต้องมีการกำกับดูแล</li>
+            <li>มีทักษะความเป็นผู้น่า มีวิจารณญาณในการตัดสินใจ และสามารถปฏิบัติงานร่วมกับผู้อื่นในสหสาขาวิชาชีพในระบบบริการสุขภาพได้อย่างราบรื่น</li>
+            <li>สามารถใช้ทรัพยากรที่มีอยู่ในชุมชนอย่างมีวิจารณญาณ เพื่อให้เกิดประโยชน์สูงสุดต่อผู้ป่วยโดยมีผลกระทบต่อระบบเศรษฐกิจของประเทศชาติน้อยที่สุด</li>
+
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<div class="infectious-services">
+
+    <!-- ผู้ป่วยนอก -->
+    <div class="infectious-card fancy infectious-color1">
+
+        <div class="infectious-icon-circle">🩺</div>
+
+        <div class="service-content">
+
+            <span class="tag">ผู้ป่วยนอก</span>
+
+            <h3>คลินิกโรคติดเชื้อเด็ก</h3>
+
+            <p>
+                ให้บริการตรวจผู้ป่วยเด็กโรคติดเชื้อ
+                ผู้ป่วยเอชไอวีและวัณโรค
+                รวมถึงการตรวจค้นหาเด็กสัมผัสวัณโรค
+            </p>
+
+            <div class="service-detail">
+                📅 ทุกวันจันทร์<br>
+                🕣 08.30 – 12.00 น.<br>
+                📍 ห้องตรวจพิเศษเด็ก 1 ชั้น 6 อาคารศรีพัฒน์<br>
+                ❌ ยกเว้นวันหยุดราชการ
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ผู้ป่วยใน -->
+    <div class="infectious-card fancy infectious-color2">
+
+        <div class="infectious-icon-circle">🏥</div>
+
+        <div class="service-content">
+
+            <span class="tag">ผู้ป่วยใน</span>
+
+            <h3>การดูแลผู้ป่วยใน</h3>
+
+            <p>
+                ให้บริการตรวจรักษาผู้ป่วยเด็กในหอผู้ป่วย
+                ที่มีโรคติดเชื้อต่าง ๆ พร้อมติดตามอาการ
+                และประเมินผลการรักษาอย่างต่อเนื่องทุกวัน
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ให้คำปรึกษา -->
+    <div class="infectious-card fancy infectious-color3">
+
+        <div class="infectious-icon-circle">💬</div>
+
+        <div class="service-content">
+
+            <span class="tag">Consultation</span>
+
+            <h3>บริการให้คำปรึกษา</h3>
+
+            <p>
+                รับปรึกษาเกี่ยวกับโรคติดเชื้อ โดยเฉพาะ
+                โรคเอชไอวีและวัณโรค สำหรับบุคลากรทางการแพทย์
+                ผู้ป่วย และครอบครัว
+            </p>
+
+            <ul>
+                <li>💊 การใช้ยาต้านไวรัส</li>
+                <li>📚 ข้อมูลความรู้โรคติดเชื้อ</li>
+                <li>👨‍👩‍👧‍👦 การดูแลผู้ป่วยและญาติ</li>
+                <li>🤝 การอยู่ร่วมกับผู้ติดเชื้อ</li>
+                <li>❤️ การดูแลภาวะจิตสังคม</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+.about-infectious{
+    max-width:1200px;
+    margin:80px auto 50px;
+    padding:0 20px;
+}
+
+.about-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.about-header h2{
+    font-size:2.5rem;
+    color:#173f6f;
+    margin-bottom:10px;
+}
+
+.about-header p{
+    color:#666;
+    font-size:1.1rem;
+}
+
+.about-card{
+    background:#ffffff;
+    border-radius:25px;
+    padding:40px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    line-height:2;
+    color:#555;
+    text-align:center;
+}
+
+.vision-mission{
+    max-width:1200px;
+    margin:50px auto 80px;
+    padding:0 20px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.vision-card,
+.mission-card{
+    background:#ffffff;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+}
+
+.vision-card{
+    border-top:6px solid #8b5cf6;
+}
+
+.mission-card{
+    border-top:6px solid #14b8a6;
+}
+
+.vm-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.vision-card h3,
+.mission-card h3{
+    color:#173f6f;
+    margin-bottom:15px;
+    font-size:1.8rem;
+}
+
+.vision-card p{
+    line-height:1.9;
+    color:#555;
+}
+
+.mission-card ul{
+    padding-left:20px;
+}
+
+.mission-card li{
+    margin-bottom:12px;
+    line-height:1.8;
+    color:#555;
+}
+
+@media(max-width:768px){
+
+    .vision-mission{
+        grid-template-columns:1fr;
+    }
+
+}
+
+.infectious-services{
+    max-width:1400px;
+    margin:50px auto;
+    padding:0 20px;
+
+    display:flex;
+    justify-content:center;
+    gap:35px;
+    flex-wrap:wrap;
+}
+
+.infectious-card{
+    flex:1;
+    min-width:350px;
+    max-width:430px;
+
+    padding:35px;
+    border-radius:28px;
+
+    background:#ffffff;
+    text-align:center;
+
+    transition:.3s;
+
+    border:3px solid transparent;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+}
+
+.infectious-card:hover{
+    transform:translateY(-10px);
+}
+
+.infectious-card.fancy{
+    background:linear-gradient(
+        145deg,
+        #ffffff,
+        #f8fbff
+    );
+}
+
+.infectious-color1{
+    border-color:#8dd1b4;
+}
+
+.infectious-color1 .infectious-icon-circle{
+    background:#e5f7f0;
+}
+
+.infectious-color2{
+    border-color:#b19cd8;
+}
+
+.infectious-color2 .infectious-icon-circle{
+    background:#f0e9fb;
+}
+
+.infectious-color3{
+    border-color:#f4b4d9;
+}
+
+.infectious-color3 .infectious-icon-circle{
+    background:#fde9f3;
+}
+
+.infectious-icon-circle{
+    width:100px;
+    height:100px;
+
+    margin:0 auto 25px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:48px;
+}
+
+.infectious-card h3{
+    font-size:24px;
+    color:#173f6f;
+    margin-bottom:15px;
+}
+
+.infectious-card p{
+    color:#555;
+    line-height:1.8;
+    font-size:15px;
+}
+
+.tag{
+    display:inline-block;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    margin-bottom:15px;
+
+    font-size:14px;
+}
+
+.service-detail{
+    margin-top:18px;
+
+    background:#f8fafc;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    line-height:1.9;
+}
+
+.infectious-card ul{
+    margin-top:15px;
+    text-align:left;
+    padding-left:20px;
+}
+
+.infectious-card li{
+    margin-bottom:8px;
+    line-height:1.7;
+}
+
+@media(max-width:768px){
+
+    .infectious-card{
+        min-width:100%;
+    }
+
+}
+</style>
+
+<script>
+function openModal(mode) {
+    document.getElementById("popupModal").style.display = "flex";
+    switchTab(mode);
+}
+
+/* --- CLOSE MODAL --- */
+function closeModal() {
+    document.getElementById("popupModal").style.display = "none";
+}
+
+/* --- TOGGLE PASSWORD --- */
+function togglePassword(id) {
+    let field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+}
+
+/* --- SWITCH TAB --- */
+function switchTab(tab) {
+    const loginTab = document.getElementById("tabLogin");
+    const regTab = document.getElementById("tabRegister");
+    const loginForm = document.getElementById("loginForm");
+    const regForm = document.getElementById("registerForm");
+
+    if (tab === "login") {
+        loginTab.classList.add("active");
+        regTab.classList.remove("active");
+        loginForm.style.display = "block";
+        regForm.style.display = "none";
+    } else {
+        regTab.classList.add("active");
+        loginTab.classList.remove("active");
+        loginForm.style.display = "none";
+        regForm.style.display = "block";
+    }
+}
+
+/* --- CLOSE WHEN CLICK OUTSIDE --- */
+window.onclick = function(event) {
+    const modal = document.getElementById("popupModal");
+    if (event.target === modal) closeModal();
+};
+
+
+// ----- CLOSE POPUP WHEN CLICK OUTSIDE -----
+window.onclick = function(event) {
+    let loginModal = document.getElementById("loginModal");
+    let regModal = document.getElementById("registerModal");
+
+    if (event.target === loginModal) loginModal.style.display = "none";
+    if (event.target === regModal) regModal.style.display = "none";
+};
+/*search*/
+document.querySelector(".search").addEventListener("click", function() {
+    let box = document.getElementById("searchBar");
+    box.style.display = (box.style.display === "flex") ? "none" : "flex";
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

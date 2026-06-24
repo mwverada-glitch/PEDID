@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Publications</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script src="search-data.js"></script>
+<script src="search.js"></script>
+
+<style>
+/* PUBLICATION SECTION */
+.pub-section {
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+.year-block {
+    margin-top: 25px;
+    border-bottom: 1px solid #BCCBC4;
+    padding-bottom: 10px;
+}
+
+.year-title {
+    font-size: 26px;
+    color: #003d6a;
+    cursor: pointer;
+}
+
+.pub-list {
+    margin-left: 20px;
+    margin-top: 10px;
+    font-size: 17px;
+    line-height: 1.6;
+}
+.pub-wrapper {
+    width: 70%;
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.pub-title {
+    color: #003d6a;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.pub-card {
+    background: white;
+    padding: 20px 30px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    border-left: 6px solid #90d0d8;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.year {
+    color: #003d6a;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.pub-list {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+/* กล่องการ์ดงานวิจัย */
+.research-card {
+  background: #f7faff; /* ฟ้าอ่อน */
+  border: 1px solid #dce7ff;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(130, 170, 255, 0.18);
+  transition: 0.3s;
+}
+
+/* เอฟเฟกต์ตอนเลื่อนเมาส์ */
+.research-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(120, 150, 255, 0.25);
+}
+
+/* ชื่อเรื่องงานวิจัย */
+.research-card h3 {
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* ลิงก์ให้สวย และอ่านง่าย */
+.research-card h3 a {
+  color: #2a4fa3;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.research-card h3 a:hover {
+  color: #1b3b85;
+  text-decoration: underline;
+}
+
+/* รายชื่อนักวิจัย */
+.research-card .authors {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+/* วารสาร */
+.research-card .journal {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #2a4fa3;
+}
+</style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left">สาขาวิชาโรคติดเชื้อ ภาควิชากุมารเวชศาสตร์ คณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+        <div class="right">
+<!-- DEMO BUTTONS -->
+            <button class="btn-primary" onclick="openModal('login')">เข้าสู่ระบบ</button>
+            <button class="btn-primary" onclick="openModal('register')">ลงทะเบียน</button>
+            <button class="lang">TH</button>
+            <button class="lang">EN</button>
+        </div>
+    </div>
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div id="tabLogin" class="tab active" onclick="switchTab('login')">เข้าสู่ระบบ</div>
+            <div id="tabRegister" class="tab" onclick="switchTab('register')">ลงทะเบียน</div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="loginPass" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('loginPass')">👁</span>
+            </div>
+
+            <button class="submit-btn">เข้าสู่ระบบ</button>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display:none;">
+
+            <label>ชื่อ-นามสกุล</label>
+            <input type="text" placeholder="ชื่อจริง-นามสกุล">
+
+            <label>อีเมล</label>
+            <input type="email" placeholder="กรอกอีเมล">
+
+            <label>รหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass1" placeholder="รหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass1')">👁</span>
+            </div>
+
+            <label>ยืนยันรหัสผ่าน</label>
+            <div class="password-box">
+                <input type="password" id="regPass2" placeholder="ยืนยันรหัสผ่าน">
+                <span class="toggle-eye" onclick="togglePassword('regPass2')">👁</span>
+            </div>
+
+            <button class="submit-btn">ลงทะเบียน</button>
+        </div>
+
+    </div>
+</div>
+<!-- HEADER -->
+<header>
+    <div class="logo-area">
+        <div class="logo-circle">
+            <img src="OIP2.webp" alt="PED CMU">
+        </div>
+
+        <div class="logo-round">
+            <img src="S__55492628.jpg" alt="PED Unit">
+        </div>
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html">HOME</a>
+
+        <!-- ABOUT US -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">ABOUT US ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="aboutus1.html">สาขาวิชาโรคติดเชื้อ</a></li>
+                <li><a href="aboutuscenter.html">ศูนย์โรคติดเชื้อเด็ก</a></li>
+                <li><a href="aboutussite.html">เว็บไซต์ที่เกี่ยวข้อง</a></li>
+            </ul>
+        </div>
+
+        <!-- OUR TEAM -->
+        <a href="personal.html">OUR TEAM ▾</a>
+
+        <!-- CONTENT -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">CONTENT ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="Guideline.html">Guideline</a></li>
+                <li><a href="Case Study.html">Case Study</a></li>
+
+                <!-- Submenu -->
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">Medical content ▾</a>
+                    <ul class="submenu">
+                        <li><a href="Medical content.html">Medical content</a></li>
+                        <li><a href="Medical content.html">ความรู้ทั่วไป</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="Workshop.html">Education Training</a></li>
+            </ul>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">RESEARCH ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="research_overview.html">Research Overview</a></li>
+                <li><a href="research_projects.html">Ongoing Projects</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </div>
+
+        <!-- NEWS -->
+        <div class="dropdown-wrapper">
+            <a class="dropdown-link">NEWS / EVENTS ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="Event.html">EVENTS</a></li>
+                <li><a href="News3.html">ประกาศ / ดาวน์โหลด</a></li>
+            </ul>
+        </div>
+        <a href="contact.html">CONTACT US</a>
+        <span class="search">🔍</span>
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="พิมพ์เพื่อค้นหา...">
+            <button type="button" id="searchBtn">ค้นหา</button>
+            <div id="searchResults"></div>
+        </div>
+
+    </nav>
+</header>
+
+<section class="pub-wrapper">
+    <h1 class="pub-title">Publications</h1>
+
+    <!-- 2026 -->
+    <div class="pub-card">
+        <h2 class="year" onclick="toggleList('y2026')">2026</h2>
+        <ul id="y2026" class="pub-list">
+            
+            <!-- Research 1 -->
+            <li class="research-card">
+                <h3>
+                    <p class="authors">
+                        Chatdanai Chanthowong1, Oramai Mueangmo2, Jutamad Saheng3,
+                        Worawan Wongjak4, Tanachot Chaito5, Tavitiya Sudjaritruk6
+                    </p>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/41999966/" target="_blank">
+                        Diagnostic Accuracy, Satisfaction, and Acceptability of Point-of-Care Testing for Syphilis,
+                        Hepatitis B, and Hepatitis C Infections among Thai Adolescents and Young Adults with Sexual Risk Behaviors
+                    </a>
+                </h3>
+            </li>
+
+            <!-- Research 2 -->
+            <li class="research-card">
+                <h3>
+                    <p class="authors">
+                        Nicola van Dongen 1, Karl-Günter Technau 2, Florence Jaguga 3 4,
+                        Gad Murenzi 5, Daisy M Machado 6, Madeleine Amorissani-Folquet 7,
+                        Rossana Ditango 8, Fiona Mureithi 9, Brittany McCoy 4 10, Ellen Brazier 11,
+                        Marco Tulio Luque 12, Julie Jesson 13, Thanyawee Phuthanakit 14,
+                        Nicola Maxwell 15, Rachel Vreeman 4 16, Batya Elul 17, Jorge A Pinto 18,
+                        Gladis Oka 7, Tavitiya Sudjaritruk 19, Tukiya Kanguya 9, Leslie Enane 20,
+                        Diane Ryumugabe 5, Genevieve Hilaire 21, Valériane Leroy 13,
+                        Annette H Sohn 22, Aaron Brehm 23, Kim Anderson 15; IeDEA
+                    </p>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/42012631/" target="_blank">
+                        Under the Influence: Alcohol, Substance Use and Treatment Adherence in Youth
+                        Living with HIV in the Global Adolescent and Young Adult Network of IeDEA (AYANI) Cohort
+                    </a>
+                </h3>
+            </li>
+
+        </ul>
+    </div>
+
+
+<!-- 2025 -->
+<div class="pub-card">
+    <h2 class="year" onclick="toggleList('y2025')">2025</h2>
+
+    <ul id="y2025" class="pub-list">
+
+        <!-- Research 1 -->
+        <li class="research-card">
+
+            <p class="authors">
+                Verónica Pingray 1, Karen Klein 1, Juan Pedro Alonso 2, María Belizan 2,
+                Magdalena Babinska 3, Jackeline Alger 4 5, Hellen C Barsosio 6, Kara Blackburn 7,
+                Olufunke Bolaji 8, Courtney Carson 9, Sofia Castiglioni 10, Daniele De Luca 11 12,
+                Sangappa Dhaded 13, Cyril Engmann 14 15, María Fernanda Escobar Vidarte 16,
+                Ramón Escuriet 17, Edna Kara 3, Caron Rahn Kim 3, Marian Knight 18,
+                Smaragda Lamprianou 19, Maria Margarita Lota 20, Silke Mader 21, Lola Madrid 22,
+                Alessandra L Marcone 10, Agustina Mazzoni 1, Rangel Mirna Montenegro 23,
+                Rose Mukisa-Bisoborwa 24, Flor M Munoz 25, Uduak Okomo 26, Pius Okong 27,
+                Vanesa Ortega 1, Florencia A Salva 1, David A Schwartz 28, 
+                Tavitiya Sudjaritruk 29, Laura Yates 30 31, Manal Younus 32, 
+                Noreen Zafar 33, Olufemi T Oladapo 3, Mabel Berrueta 1, Mercedes Bonet 3
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/39896875/" target="_blank">
+                    A core outcome set for maternal and neonatal health research and surveillance of 
+                    emerging and ongoing epidemic threats (MNH-EPI-COS): 
+                    a modified Delphi-based international consensus
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>eClinicalMedicine</strong>, Volume 80, 2025  
+                <br>Impact factor: 9.600 (Q1, JCR)  
+                <br>SCImago: 18.90 (Q1)
+            </p>
+
+        </li>
+
+        <!-- Research 2 -->
+        <li class="research-card">
+
+            <p class="authors">
+                Lonnie Embleton 1, Tavitiya Sudjaritruk 2 3, Daisy Maria Machado 4, Belinda Chihota 5,
+                Françoise Musabyimana 6, Julie Jesson 7, Edith Apondi 8, Thanyawee Puthanakit 9,
+                Marco Tulio Luque 10, Nicola Ellen van Dongen 11, Gad Murenzi 6,
+                Madeleine Amorissani-Folquet 12, Zachary Kwena 13, Nicole Perreras 14,
+                Vanessa Rouzier 15, Rita Lyamuya 16, Kim Anderson 17, Batya Elul 18,
+                Valériane Leroy 7, Leslie A Enane 19, Roxanne Martin 1, Kathryn Lancaster 20,
+                Angela M Parcesepe 21, Rachel Vreeman 1; IeDEA
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/40181514/" target="_blank">
+                    Characterizing adolescent and youth-friendly HIV services: 
+                    a cross-sectional assessment across 16 global sites
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of the International AIDS Society</strong>, Volume 28, 2025  
+                <br>Impact factor: 4.600; Q1 (JCR) 
+                <br>SCImago: 8.60; Q1
+            </p>
+
+        </li>
+                <!-- Research 3 -->
+        <li class="research-card">
+
+            <p class="authors">
+                Chane Choed-Amphai 1, Pattranan Kusontammarat 2, Supapitch Chanthong 2, Nattawan Arkarattanakul 2,
+                 Poonyapon Rodchaprom 3, Lalita Sathitsamitphong 2, Rungrote Natesirinilkul 2, Pimlak Charoenkwan 2 4
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/40491726/" target="_blank">
+                    Clinical course and management of hypertriglyceridemia thalassemia syndrome: A case-based systematic review
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>World Journal of Clinical Pediatrics</strong>, Volume 14, 2025  
+        
+                <br>SCImago: 3.20 (Q2)
+            </p>
+
+        </li>
+        <!-- Research 4 -->
+        <li class="research-card">
+
+            <p class="authors">
+                Phatharajit Phatharodom 1, Alan Maleesatharn 2, Tavitiya Sudjaritruk 3 4, Suwimon Khusuwan 5, Kathy Petoumenos 6,
+                 Linda Aurpibul 7, Romanee Chaiwarith 8, Michelle L Giles 9, Du Tuan Quy 10, Smita Nimkar 11, Alvina Widhani 12,
+                Junko Tanuma 13, Matthew Law 6, Annette H Sohn 14, Kulkanya Chokephaibulkit 2; IeDEA Asia‐Pacific
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/40200597/" target="_blank">
+                   Differences in clinical characteristics between adolescents and young adults 
+                   with perinatally and sexually acquired HIV in the Asia-Pacific region
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of the International AIDS Society</strong>, Volume 28, 2025  
+                <br>Impact factor: 4.600; Q1 (JDA) 
+                <br>SCImago: 8.60 (Q1)
+            </p>
+        </li>
+        <li class="research-card">
+
+            <p class="authors">
+                Jiawei He 1, Edmond Brewer 2, Amanda Novotney 2, Austin Carter 1, Hilary Paul 2,
+                 Magdalene K Walters 3, Kemal Sherefa Oumer 1, Reshma Kassanjee 4, Joycelyn Dame 5,
+                 Sophie Desmonde 6, Brian Eley 7, Azar Kariminia 8, Denis Nash 9, Peter F Rebeiro 10,
+                 Vanessa Rouzier 11, Tavitiya Sudjaritruk 12, Kara Wools-Kaloustian 13, Constantin T Yiannoutsos 14,
+                 Marcel Yotebieng 15, Reed J D Sorensen 1, Christopher J L Murray 1, Simon I Hay 1, Aleksandr Aravkin 1,
+                 Abraham Flaxman 1, Peng Zheng 1, Hmwe H Kyu 16
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/40912259/" target="_blank">
+                   HIV-related mortality time trends among children and young adolescents on antiretroviral therapy by age, 
+                   treatment duration, and region: a systematic review and meta-regression analysis
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Lancet HIV</strong>, e774-e788, 2025  
+                <br>Impact factor: 12.800; Q1 (JCR) 
+                <br>SCImago: 19.90 (Q1)
+            </p>
+
+        </li>
+        <li class="research-card">
+
+            <p class="authors">
+                Linda Aurpibul 1, Kulkanya Chokephaibulkit 2 3, Wipaporn Natalie Songtaweesin 4 5, Pradthana Ounchanum 6, Pope Kosalaraksa 7,
+                 Tavitiya Sudjaritruk 8, Supattra Rungmaitree 2, Surinda Kawichai 4, Pagakrong Lumbiganon 7, Tulathip Suwanlerk 9,
+                 Thanyawee Puthanakit 4; Thai PAPAYA study team
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/41432991/" target="_blank">
+                   Increased Pro-inflammatory Biomarkers and Cardiovascular Risk in Young Adults Living With Perinatal HIV in Thailand
+                </a>
+            </h3>
+
+        </li>
+        <li class="research-card">
+
+            <p class="authors">
+                Smita Nimkar 1, Aarti Kinikar 1 2, Vidya Mave 1, Vohith Khol 3, Quy Tuan Du 4, Lam Nguyen 5, Pradthana Ounchanum 6,
+                 Dinh Qui Nguyen 7, Thanyawee Puthanakit 8, Pope Kosalaraks 9, Kulkanya Chokephaibulkit 10, Tavitiya Sudjaritruk 11 12,
+                 Dina Muktiarti 13, Nagalingeswaran Kumarasamy 14, Nik Khairulddin Nik Yusoff 15, Thahira Mohamed 16, Dewi Wati 17,
+                Anggraini Alam 18, Siew Fong 19, Revathy Nallusamy 20, Tulathip Suwanlerk 21, Annette Sohn 21, Azar Kariminia 22;
+                 TREAT Asia Pediatric HIV Observational Database of IeDEA Asia‐Pacific
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/40912259/" target="_blank">
+                   Long-term risk of mortality and loss to follow-up in children and adolescents on antiretroviral therapy in Asia
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>HIV Medicine</strong>, 26:140-152, 2025  
+                <br>Impact factor: 2.800; Q2 (JCR) 
+                <br>SCImago: 5.10 (Q1)
+            </p>
+
+        </li>
+        <li class="research-card">
+
+            <p class="authors">
+                Natchaya Kunanitthaworn 1, Sipang Pangprasertkul 1, Pattranan Kusontammarat 1,
+                 Lalita Sathitsamitphong 2, Pimlak Charoenkwan 3, Tavitiya Sudjaritruk 4
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/40912259/" target="_blank">
+                   Scrub typhus-associated hemophagocytic lymphohistiocytosis among healthy children: A case series from northern Thailand
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>International Journal of Infectious Diseases</strong>, 161, 2025  
+                <br>Impact factor: 4.800; Q1 (JCR) 
+                <br>SCImago: 18.90 (Q1)
+            </p>
+
+        </li>        
+        
+        
+    </ul>
+</div>
+
+
+    <!-- 2024 -->
+<div class="pub-card">
+    <h2 class="year" onclick="toggleList('y2024')">2024</h2>
+
+    <ul id="y2024" class="pub-list">
+
+        <!-- Research 1 -->
+        <li class="research-card">
+
+            <p class="authors">
+                Chatchaya Nangsue 1, Karan Srisurapanont 1, Tavitiya Sudjaritruk 2 3
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/38793719/" target="_blank">
+                    A core outcome set for maternal and neonatal health research and surveillance of 
+                    emerging and ongoing epidemic threats (MNH-EPI-COS): 
+                    a modified Delphi-based international consensus
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Vaccines</strong>, Volume 12, 2024  
+                <br>Impact factor: 7.800 (Q1, JCR)  
+                <br>SCImago: 7.00 (Q1)
+            </p>
+
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+                Pradthana Ounchanum 1, Linda Aurpibul 2, Sirinya Teeraananchai 3,
+                 Pagakrong Lumbiganon 4, Wipaporn Natalie Songtaweesin 5, Tavitiya Sudjaritruk 6,
+                 Kulkanya Chokephaibulkit 7, Supattra Rungmaitree 8, Pope Kosalaraksa 4, Tulathip Suwanlerk 9,
+                 Jeremy L Ross 9, Annette H Sohn 9, Thanyawee Puthanakit on behalf of the Thai PAPAYA study team 5
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/38447043/" target="_blank">
+                    High mortality in adolescents and young adults with perinatally-acquired 
+                    HIV in Thailand during the transition to adulthood
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>AIDS Care - Psychological and Socio-Medical Aspects of AIDS/HIV</strong>,36:964-973, 2024  
+                <br>Impact factor: 1.700 (Q3, JCR)  
+                <br>SCImago: 3.50 (Q2)
+            </p>
+
+        </li>
+
+        <!-- Research 3 -->
+        <li class="research-card">
+
+            <p class="authors">
+                Pattranan Kusontammarat 1, Chane Choed-Amphai 2, Lalita Sathitsamitphong 3, Watchareewan Sontichai 4,
+                 Rungrote Natesirinilkul 3, Pimlak Charoenkwan 3
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/38977464/" target="_blank">
+                    Predicting relapsed/refractory disease in childhood hemophagocytic lymphohistiocytosis 
+                    based on clinical features at diagnosis: A 13-year single-institute retrospective study in Thailand
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Annals of Hematology</strong>, 103:3963-3971, 2024  
+                <br>Impact factor: 3.500 (Q2, JCR)  
+                <br>SCImago: 5.50 (Q1)
+            </p>
+
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+                Tavitiya Sudjaritruk 1, Aarti Kinikar 2, Annette H Sohn 3
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/39487028/" target="_blank">
+                   Research on Perinatal Human Immunodeficiency Virus in Asia: Data on Treatment Outcomes 
+                   and Emerging Co-Morbidities from the TREAT Asia Network
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Clinics in Perinatology</strong>,  51:911-923, 2024  
+                <br>Impact factor: 2.100 (Q3, JCR)  
+                <br>SCImago: 4.20 (Q2)
+            </p>
+
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+               Kriangkrai Chawansuntati 1, Supachai Sakkhachornphop 1, Sayamon Hongjaisee 1, Saranta Freeouf 1,
+                Patumrat Sripan 1, Nattaya Nusartsang 1, Romanee Chaiwarith 2, Tavitiya Sudjaritruk 3, Khuanchai Supparatpinyo 1, Jiraprapa Wipasa 1
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/38549951/" target="_blank">
+                   Safety and immunogenicity of CoronaVac and ChAdOx1 heterologous prime-boost vaccines
+                    in an overweight population in Chiang Mai, Thailand
+                </a>
+
+            </h3>
+
+            <p class="journal">
+                <strong>Clinics in Perinatology</strong>,  51:911-923, 2024  
+                <br>Impact factor: 2.100 (Q3, JCR)  
+                <br>SCImago: 4.20 (Q2)
+            </p>
+
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+              Elizabeth Zaniewski 1, Veronika Whitesell Skrivankova 1, Ellen Brazier 2, Anchalee Avihingsanon 3, Sandra Wagner Cardoso 4,
+               Carina Cesar 5, Henri Chenal 6, Brenda E Crabtree-Ramírez 7, Rossana A Ditangco 8, Peter Vanes Ebasone 9, Brian Eley 10,
+               Jonathan George Euvrard 11, Geoffrey Fatti 12 13, Jacqueline Madalitso Huwa 14, Patricia Lelo 15, Daisy Maria Machado 16,
+               Eugene Kouassi Messou 17, Albert Kla Minga 18, Joseph Muleebwa 19, Sanjay Mundhe 20, Gad Murenzi 21, Winnie R Muyindike 22 23,
+               Dominique Mahambou Nsonde 24, Sarah M Obatsa 25, Joseph Odhiambo 26, Hans Walter Prozesky 27 28, Supattra Rungmaitree 29,
+               Aggrey Semwendero Semeere 30, Moussa Seydi 31, Nosisa Sipambo 32, Tavitiya Sudjaritruk 33, Karl-Günter Technau 34, Thierry Tiendrebeogo 35,
+               Christelle Twizere 36, Marie Ballif 1 37
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/39236112/" target="_blank">
+                  Transition to dolutegravir-based ART in 35 low- and middle-income countries: a global survey of HIV care clinics
+                </a>
+
+            </h3>
+
+            <p class="journal">
+                <strong>AIDS</strong>,38:2073-2085, 2024  
+                <br>Impact factor: 3.800 (Q3, JCR)  
+                <br>SCImago: 6.30 (Q1)
+            </p>
+
+        </li>   
+    </ul>
+</div>
+
+    <!-- 2023 -->
+<div class="pub-card">
+    <h2 class="year" onclick="toggleList('y2023')">2023</h2>
+
+    <ul id="y2023" class="pub-list">
+
+        <!-- Research 1 -->
+        <li class="research-card">
+
+            <p class="authors">
+                Tavitiya Sudjaritruk 1, Suparat Kanjanavanit 2, Tanachot Chaito 3,
+                 Natthanidnan Sricharoen 3, Chanidapa Prasarakee 4, Saowalak Sarachai 4, Thanyawee Puthanakit 5
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37294251/" target="_blank">
+                    A Three-Year Follow-Up of Bone Density Among Thai Adolescents With 
+                    Perinatally Acquired HIV After Completion of Vitamin D and Calcium Supplementation
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of Adolescent Health</strong>,  73:262-270, 2023
+                <br>Impact factor: 7.898 (Q1, JCR)  
+                <br>SCImago: 7.10 (Q1)
+            </p>
+        </li>
+        <!-- Research 2 -->
+        <li class="research-card">
+
+            <p class="authors">
+                Linda Aurpibul 1, Pope Kosalaraksa 2, Surinda Kawichai 3, Pagakrong Lumbiganon 2,
+                 Pradthana Ounchanum 4, Wipaporn Natalie Songtaweesin 3, Tavitiya Sudjaritruk 5, 
+                Kulkanya Chokephaibulkit 6, Supattra Rungmaitree 6, Tulathip Suwanlerk 7, Jeremy L Ross 7,
+                 Annette H Sohn 7, Thanyawee Puthanakit 3; Thai PAPAYA study team
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/36785872/" target="_blank">
+                    Alcohol use, suicidality and virologic non-suppression among young adults with 
+                    perinatally acquired HIV in Thailand: a cross-sectional study
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of the International AIDS Society</strong>,Volume 26., 2023
+                <br>Impact factor: 6.707 (Q1, JCR)  
+                <br>SCImago: 6.90 (Q1)
+            </p>
+        </li>
+
+        <!-- Research 3 -->
+        <li class="research-card">
+
+            <p class="authors">
+                Wilawan Chaiut 1, Ratana Sapbamrer 1, Sauwaluk Dacha 2, Tavitiya Sudjaritruk 3,
+                 Ida Parwati 4, Anton Sumarpo 4 5, Rungnapa Malasao 1
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37287198/" target="_blank">
+                    Characteristics of Respiratory Syncytial Virus Infection in Hospitalized Children Before and During the COVID-19 Pandemic in Thailand
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of preventive medicine and public health = Yebang Uihakhoe chi.</strong>,56:212-220, 2023
+                 
+                <br>SCImago: 3.90 (Q2)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+                Sayamon Hongjaisee 1, Kriangkrai Chawansuntati 1, Patumrat Sripan 1, Kritsadee Rattanathammethee 1,
+                 Supachai Sakkhachornphop 1, Romanee Chaiwarith 2, Tavitiya Sudjaritruk 3, Khuanchai Supparatpinyo 1, Jiraprapa Wipasa 1
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37155476/" target="_blank">
+                    Comparison of antibody responses following natural infection with Severe Acute Respiratory Syndrome Coronavirus 2 
+                    or receipt of CoronaVac or ChAdOx1 (AZD1222) vaccination in Chiang Mai, Thailand
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Vaccine: X.</strong>,Volume 14., 2023
+                 
+                <br>SCImago: 3.90 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+                Sayamon Hongjaisee 1, Kriangkrai Chawansuntati 1, Patumrat Sripan 1, Kritsadee Rattanathammethee 1,
+                 Supachai Sakkhachornphop 1, Romanee Chaiwarith 2, Tavitiya Sudjaritruk 3, Khuanchai Supparatpinyo 1, Jiraprapa Wipasa 1
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/36992147/" target="_blank">
+                    Comparison of Immunogenicity and Reactogenicity of Five Primary Series of COVID-19 Vaccine Regimens against Circulating 
+                    SARS-CoV-2 Variants of Concern among Healthy Thai Populations
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Vaccine: X.</strong>,Volume 11., 2023
+                <br>Impact factor: 
+                <br>SCImago: 4.50 (Q1)
+            </p>
+        </li>
+        
+        <li class="research-card">
+
+            <p class="authors">
+                JPoramed Winichakoon # 1, Jiraprapa Wipasa # 2, Kriangkrai Chawansuntati 2, Parichat Salee 1, Tavitiya Sudjaritruk 3,
+                Saowaluck Yasri 1, Chantana Khamwan 4, Rungnapa Peerakam 4, Dararat Dankai 4, Romanee Chaiwarith 5
+            </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/36593231/" target="_blank">
+                    Diagnostic performance between in-house and commercial SARS-CoV-2 serological immunoassays 
+                    including binding-specific antibody and surrogate virus neutralization test (sVNT)
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Scientific Reports.</strong>,Volume 13., 2023
+                <br>Impact factor: 4.997 (Q2)
+                <br>SCImago: 6.90 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+                Johanna Beulah Sornillo 1, Rossana Ditangco 2, Pagakrong Lumbiganon 3, Thien An Vu 4, Oanh Ngoc Le 5, Khanh Huu Truong 6,
+                Lam Van Nguyen 7, Viet Chau Do 4, Pradthana Ounchanum 8, Dewi Kumara Wati 9, Thanyawee Puthanakit 10, Nia Kurniati 11,
+                Keswadee Lapphra 12, Tavitiya Sudjaritruk 13, Nagalingeswaran Kumarasamy 14, Thahira A Jamal Mohamed 15, Nik Khairulddin Nik Yusoff 16,
+                Siew Moy Fong 17, Revathy A Nallusamy 18, Annette H Sohn 19, Azar Kariminia 20
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/36794343/" target="_blank">
+                    Disclosure of HIV status and associated clinical outcomes of children and adolescents living with HIV in Asia
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>AIDS Care - Psychological and Socio-Medical Aspects of AIDS/HIV.</strong>,35:1928-1937., 2023
+                <br>Impact factor: 1.887 (Q3)
+                <br>SCImago: 3.50 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+                Wilawan Chaiut 1, Ratana Sapbamrer 1, Sauwaluk Dacha 2, Tavitiya Sudjaritruk 3, Rungnapa Malasao 4
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37633227/" target="_blank">
+                    Epidemiology and associated factors for hospitalization related respiratory syncytial virus infection 
+                    among children less than 5 years of age in Northern Thailand
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of Infection and Public Health.</strong>,16:1659-1665., 2023
+                <br>Impact factor: 7.537 (Q1)
+                <br>SCImago: 8.00 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+                Orasri Wittawatmongkol 1, Pornumpa Bunjoungmanee 2, Pope Kosalaraksa 3, Kamolwish Laoprasopwattana 4,
+                Sophida Boonsathorn 5, Napaporn Chantasrisawad 6, Tavitiya Sudjaritruk 7, Suvimol Niyomnaitham 8,
+                Sansnee Senawong 9, Kanjana Srisutthisamphan 10, Zheng Quan Toh 11, Supattra Rungmaitree 1, Sira Nanthapisal12, 
+                Supranee Phanthanawiboon 13, Puttichart Khantee 4, Chonnamet Techasaensiri 5, Nattiya Hirankarn 14, Sipang Pangprasertkul 7, Kulkanya Chokephaibulkit 15
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37586956/" target="_blank">
+                    Immunogenicity and reactogenicity of fractional, heterologous primary COVID-19 vaccination schedules with BNT162b2 boosters 
+                    in 5-11-year-old Thai children: A multicenter, prospective, double-blind, randomized control trial
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of Infection and Public Health.</strong>, 41:5834-5840., 2023
+                <br>Impact factor: 4.169 (Q3)
+                <br>SCImago: 6.70 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+               Tulathip Suwanlerk 1, Dhanushi Rupasinghe 2, Watsamon Jantarabenjakul 3, Vu T An 4, Jeremy L Ross 1, Azar Kariminia 2, Nguyen Van Lam 5,
+                Aarti Kinikar 6, Pradthana Ounchanum 7, Thanyawee Puthanakit 3, Nik K Nik Yusoff 8, Pagakrong Lumbiganon 9, Kulkanya Chokephaibulkit 10,
+                Do C Viet 4, Tavitiya Sudjaritruk 11, Fong S Moy 12, Dewi K Wati 13, Thahira J Mohamed 14, Revathy Nallusamy 15, Nagalingeswaran Kumarasamy 16,
+                Vohith Khol 17, Truong H Khanh 18, Nia Kurniati 19; TREAT Asia pediatric HIV Observational Database (TApHOD)
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37114944/" target="_blank">
+                    Lipid and glucose abnormalities and associated factors among children living with HIV in Asia
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Antiviral Therapy.</strong>, 28., 2023
+                <br>Impact factor: 1.679 (Q4)
+                <br>SCImago: 5.10 (Q2)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+               Wanatpreeya Phongsamart 1, Kristen E Allen 2, Warunee Punpanich Vandepitte 3, Chonnamet Techasaensiri 4,
+                Pope Kosalaraksa 5, Kamolwish Laoprasopwattana 6, Puttichart Khantee 6, Songkiat Udompornwattana 7,
+                Detchvijitr Suwanpakdee 8, Tavitiya Sudjaritruk 9, Thanyawee Puthanakit 10, Suvaporn Anugulruengkitt 10,
+                Jo Southern 2, Mark A Fletcher 11, Eileen M Dunne 2, Ruangwit Thamaree 12, Graciela Morales 2,
+                Kulkanya Chokephaibulkit 1, Tawee Chotpitayasunondh 3
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37415954/" target="_blank">
+                    Outcomes among Thai children with risk conditions hospitalized for pneumococcal disease 
+                    (invasive or non-bacteraemic pneumonia): A multi-centre, observational study
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>IJID Regions.</strong>,8:49-57, 2023
+            </p>
+        </li>        
+
+        <li class="research-card">
+
+            <p class="authors">
+               Rungnapa Malasao 1, Wilawan Chaiut 2, Wanwisa Tantipetcharawan 3,
+               Ratchanu Tongphung 3, Nicha Charoensri 4, Piyawan Takarn 5, Tavitiya Sudjaritruk 6, Niwat Maneekarn 7
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37482015/" target="_blank">
+                    Predominance of ON1 and BA9 genotypes of human respiratory syncytial virus in children with acute respiratory infection in Chiang Mai, Thailand, 2020-2021
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of Infection and Public Health.</strong>16:1418-1426., 2023
+                <br>Impact factor: 7.537 (Q1)
+                <br>SCImago: 8.00 (Q1)
+            </p>
+        </li>
+        <li class="research-card">
+
+            <p class="authors">
+               Pagakrong Lumbiganon 1, Azar Kariminia 2, Suvaporn Anugulruengkitt 3 4,
+               Pradthana Ounchanum 5, Sukanda Denjanta 5, Thanyawee Puthanakit 3 4,
+               Pope Kosalaraksa 1, Tavitiya Sudjaritruk 6 7, Chanidapa Detsakunathiwatchara 8,
+               Viet Chau Do 9, An Thien Vu 9, Lam Van Nguyen 10, Giang Thi Thanh Thuy 10,
+               Tulathip Suwanlerk 11, Annette H Sohn 11, IeDEA Asia-Pacific </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/36223538/" target="_blank">
+                    Pregnancy and birth outcomes among young women living with perinatally acquired HIV in Thailand and Vietnam
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>AIDS Care - Psychological and Socio-Medical Aspects of AIDS/HIV.</strong> 35:818-823., 2023
+                <br>Impact factor: 1.887 (Q3)
+                <br>SCImago: 3.50 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+               Patricia Mandima1, Kristin Baltrusaitis2, Grace Montepiedra 2, Lisa Aaron 2, Jyoti Mathad 3, Carolyne Onyango-Makumbi 4,
+                Mandisa Nyati 5, James Ngocho 6, Gift Chareka 7, Ponego Ponatshego 8, Gaerolwe Masheto 8, Katie McCarthy 9, Patrick Jean-Philippe 10,
+                Amita Gupta 11, Lynda Stranix-Chibanda 7 12; IMPAACT P1078 T. B. APPRISE study team </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/36650479/" target="_blank">
+                    Prevalence of neurotoxicity symptoms among postpartum women on isoniazid preventive therapy and 
+                    efavirenz-based treatment for HIV: an exploratory objective of the IMPAACT P1078 randomized trial
+                </a>
+            </h3>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+            Linda Aurpibul 1, Chanidapa Detsakunathiwatchara 1, Ratchaneekorn Khampun 1, Nongyow Wongnum 2, Tawalchaya Chotecharoentanan 1 3, Tavitiya Sudjaritruk 2 </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35567281/" target="_blank">
+                Quality of life and HIV adherence self-efficacy in adolescents and young adults living with perinatal HIV in Chiang Mai, Thailand
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>AIDS Care - Psychological and Socio-Medical Aspects of AIDS/HIV.</strong> 35:406-410., 2023
+                <br>Impact factor: 1.887 (Q3)
+                <br>SCImago: 3.50 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+            Romanee Chaiwarith 1, Poramed Winichakoon 2, Parichat Salee 2, Tavitiya Sudjaritruk 3 4, Jiraprapa Wipasa 5, Kriangkrai Chawansuntati 5,
+             Saowaluck Yasri 2, Harit Thongwitokomarn 2, Kawisara Krasaewes 2, Sethawut Ruangsirinusorn 2, Jutarat Praparattanapan 2, Nuttarika Solai 2,
+             Khanuengnit Nuket 2, Darakorn Boonmee 2, Orapin Chaichana 3 4, Oramai Mueangmo 3 4, Jutamad Saheng 3 4, Worawan Wongjak 3 4 </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37957189/" target="_blank">
+                Safety and immunogenicity of the third and fourth doses of vaccine against SARS-CoV-2 following a 2-dose regimen of inactivated whole-virion SARS-CoV-2 vaccine
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Vaccine: X.</strong> 18, 2024
+                <br>Impact factor: 1.887 (Q3,JDA)
+                <br>SCImago: 3.80 (Q1)
+            </p>
+        </li>        
+
+        <li class="research-card">
+
+            <p class="authors">
+            Natchaya Kunanitthaworn 1, Oramai Mueangmo 1 2, Jutamad Saheng 1 2, Worawan Wongjak 2, Tanin Lertsiriladakul 2, Tanachot Chaito 2, Pasawat Nantarat 2, Tavitiya Sudjaritruk 3 4 </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37833325/" target="_blank">
+                Seroprevalence of hepatitis A virus antibodies among children and adolescents living in Northern Thailand: an implication for hepatitis A immunization
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>PLoS neglected tropical diseases.</strong> 16, 2022
+                <br>Impact factor: 4.411 (Q1,JCR)
+                <br>SCImago: 7.10 (Q1)
+            </p>
+        </li>       
+
+        <li class="research-card">
+
+            <p class="authors">
+            Johanna Beulah Sornillo 1, Rossana Ditangco 2, Aarti Kinikar 3, Dewi Kumara Wati 4, Quy Tuan Du 5, Dinh Qui Nguyen 6, Vohith Khol 7, Lam Van Nguyen 8, Thanyawee Puthanakit 9,
+             Pradthana Ounchanum 10, Nia Kurniati 11, Kulkanya Chokephaibulkit 12, Thahira A Jamal Mohamed 13, Tavitiya Sudjaritruk 14, Siew Moy Fong 15, Nagalingeswaran Kumarasamy 16,
+            Pope Kosalaraksa 17, Revathy A Nallusamy 18, Nik Khairulddin Nik Yusoff 19, Annette H Sohn 20, Azar Kariminia 21; TREAT Asia Pediatric HIV Observational Database of IeDEA Asia-Pacific </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37708128/" target="_blank">
+                The changing characteristics of a cohort of children and adolescents living with HIV at antiretroviral therapy initiation in Asia
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>PLoS ONE.</strong> 18, 2023
+                <br>Impact factor: 3.752 (Q1,JCR)
+                <br>SCImago: 5.60 (Q1)
+            </p>
+        </li>    
+
+    </ul>
+</div>
+
+    <!-- 2022 -->
+<div class="pub-card">
+    <h2 class="year" onclick="toggleList('y2022')">2022</h2>
+
+    <ul id="y2022" class="pub-list">
+
+        <!-- Research 1 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Sipang Pangprasertkul 1, Wattawan Borisoot 2, Nida Buawangpong 2, Wachiranun Sirikul 3,
+             Natrujee Wiwattanadittakul 4, Kamornwan Katanyuwong 4, Chinnuwat Sanguansermsri 4 </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35113509/" target="_blank">
+                Comparison of Arterial Ischemic and Hemorrhagic Pediatric Stroke in Etiology, Risk Factors, Clinical Manifestations, and Prognosis
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Pediatric emergency care.</strong>38:E1569-E1573, 2022
+                <br>Impact factor: 1.454 (Q3, JCR)  
+                <br>SCImago: 1.80 (Q2)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+            Pathariya Promsena 1 2, Watsamon Jantarabenjakul 1 2 3, Piyarat Suntarattiwong 4, Tavitiya Sudjaritruk 5,
+             Suvaporn Anugulruengkitt 1 2, Suwatchareeporn Rotcheewaphan 6 7, Suthidee Petsong 6, Panadda Sawangsinth 2,
+             Jiratchaya Sophonphan 2, Monta Tawan 2, Juthamanee Moonwong 2, Thanyawee Puthanakit 1 2 </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/34643215/" target="_blank">
+                Diagnostic Accuracy of Loop-Mediated Isothermal Amplification (TB-LAMP) for Tuberculosis in Children
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of the Pediatric Infectious Diseases Society. </strong>11:9-15., 2022
+                <br>Impact factor: 3.164 (Q1, JCR)  
+                <br>SCImago: 4.80 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+            Sipang Pangprasertkul 1, Chinnuwat Sanguansermsri 2, Tavitiya Sudjaritruk 1 3 </p>
+
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/36299527/" target="_blank">
+                Epstein-Barr virus meningoencephalitis in a young immunocompetent child: A case report
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Heliyon.</strong>Volume 8., 2022
+        
+                <br>SCImago: 2.10 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+            Kanyarat Khieosanuk 1, Sawalak Fupinwong 2, Anchana Tosilakul 2, Natthanidnan Sricharoen 3, Tavitiya Sudjaritruk 4 </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/34348119/" target="_blank">
+                Incidence rate and risk factors of central line-associated bloodstream infections among neonates and children admitted to a tertiary care university hospital
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>American Journal of Infection Control.</strong>50:105-107., 2022
+                <br>Impact factor: 2.918 (Q2, JCR)  
+                <br>SCImago: 4.20 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+            Watsamon Jantarabenjakul 1, Piyarat Suntarattiwong 2, Noppadol Wacharachaisurapol 3,
+            Praon Supradish Na Ayudhya 2, Weeraya Phaisal 4, Monta Tawan 5, Juthamanee Moonwong 5,
+            Tavitiya Sudjaritruk 6, Pajaree Chariyavilaskul 4, Thanyawee Puthanakit 7 </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35842213/" target="_blank">
+                Pharmacokinetics and Safety of WHO-Recommended Dosage and Higher Dosage of Levofloxacin for Tuberculosis Treatment in Children: a Pilot Study
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>International Journal of Infectious Diseases.</strong>122:603-608., 2022
+                <br>Impact factor: 3.623 (Q2, JCR)  
+                <br>SCImago: 7.00 (Q1)
+            </p>
+        </li>        
+
+        <li class="research-card">
+
+            <p class="authors">
+             David C Boettiger 1 2 3, Vu Thien An 4, Nagalingeswaran Kumarasamy 5, Iskandar Azwa 6, Tavitiya Sudjaritruk 7 8,
+             Khanh Huu Truong 9, Anchalee Avihingsanon 10 11, Jeremy Ross 12, Azar Kariminia 1; International Epidemiology Databases to Evaluate AIDS—Asia-Pacific </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35125475/" target="_blank">
+                Recent Trends in Adult and Pediatric Antiretroviral Therapy Monitoring and Failure
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of acquired immune deficiency syndromes (1999).</strong>90:193-200., 2022
+                <br>Impact factor: 3.731 (Q2, JCR)  
+                <br>SCImago: 5.90 (Q1)
+            </p>
+        </li>  
+
+        <li class="research-card">
+
+            <p class="authors">
+            Tavitiya Sudjaritruk 1 2 3, Quanhathai Kaewpoowat 3 4, Chanidapa Prasarakee 3, Saowalak Sarachai 3, Anne-Frieda Taurel 5,
+            Natthanidnan Sricharoen 2, Phatraporn Assawawongprom 6, Jutamad Saheng 1 2, Rebecca Harris 5, Joshua Nealon 5, Sutee Yoksan 7 8 </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35913983/" target="_blank">
+                Seroepidemiological study of Japanese encephalitis virus in Chiang Mai: Immunity and susceptibility 28 years after introduction of a vaccination programme
+                </a>
+            </h3>
+        </li>    
+        <li class="research-card">
+
+            <p class="authors">
+             David C Boettiger 1 2 3, Vu Thien An 4, Pagakrong Lumbiganon 5, Orasri Wittawatmongkol 6, Khanh Huu Truong 7,
+             Viet Chau Do 4, Lam Van Nguyen 8, Penh Sun Ly 9, Aarti Kinikar 10, Pradthana Ounchanum 11, Thanyawee Puthanakit 12,
+             Nia Kurniati 13, Nagalingeswaran Kumarasamy 14, Dewi Kumara Wati 15, Kulkanya Chokephaibulkit 6, Thahira A Jamal Mohamed 16,
+             Tavitiya Sudjaritruk 17, Nik Khairulddin Nik Yusoff 18, Moy Siew Fong 19, Revathy A Nallusamy 20, Azar Kariminia 1; TREAT Asia Pediatric HIV Observational Database </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35185140/" target="_blank">
+                Severe Recurrent Bacterial Pneumonia Among Children Living With HIV
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>The Pediatric infectious disease journal.</strong> 41:E208-E215., 2022
+                <br>Impact factor: 2.129 (Q3, JCR)  
+                <br>SCImago: 4.20 (Q1)
+            </p>
+        </li>  
+
+        <li class="research-card">
+
+            <p class="authors">
+            Watsamon Jantarabenjakul 1 2, Praon Supradish Na Ayudhya 3, Piyarat Suntarattiwong 3, Nattawan Thepnarong 2,
+             Suwachreepon Rotcheewaphan 4, Nibondh Udomsantisuk 4, Juthamanee Moonwong 2, Papada Kosulvit 3, Monta Tawan 2,
+             Tavitiya Sudjaritruk 5 6, Thanyawee Puthanakit 1 2 </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/36238580/" target="_blank">
+                Temporal trend of drug-resistant tuberculosis among Thai children during 2006-2021
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>IJID Regions.</strong> 5:79-85. , 2022
+            </p>
+        </li> 
+    </ul>
+</div> 
+        
+    <!-- 2021 -->
+<div class="pub-card">
+    <h2 class="year" onclick="toggleList('y2021')">2021</h2>
+
+    <ul id="y2021" class="pub-list">
+
+        <!-- Research 1 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Reshma Kassanjee 1, Leigh F Johnson 1, Elizabeth Zaniewski 2, Marie Ballif 2, Benedikt Christ 2, Constantin T Yiannoutsos 3,
+            Patience Nyakato 1, Sophie Desmonde 4, Andrew Edmonds 5, Tavitiya Sudjaritruk 6 7, Jorge Pinto 8, Rachel Vreeman 9 10 11,
+            Désiré Lucien Dahourou 4 12, Christelle Twizere 13, Azar Kariminia 14, James G Carlucci 15, Charles Kasozi 16, Mary-Ann Davies 1;
+            International epidemiology Databases to Evaluate AIDS (IeDEA) Collaboration </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/34546646/" target="_blank">
+                Global HIV mortality trends among children on antiretroviral treatment corrected 
+                for under-reported deaths: an updated analysis of the International epidemiology Databases to Evaluate AIDS collaboration
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of the International AIDS Society.</strong>Volume 24, 2021
+                <br>Impact factor: 5.553 (Q1, JCR)  
+                <br>SCImago: 7.10 (Q1)
+            </p>
+        </li>
+
+        <!-- Research 2 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Adam W Bartlett 1, Tavitiya Sudjaritruk 2, Thahira J Mohamed 3, Suvaporn Anugulruengkit 4 5, 
+            Nagalingeswaran Kumarasamy 6, Wanatpreeya Phongsamart 7, Penh Sun Ly 8, Khanh Huu Truong 9, 
+            Lam Van Nguyen 10, Viet Chau Do 11, Pradthana Ounchanum 12, Thanyawee Puthanakit 4 5, 
+            Kulkanya Chokephaibulkit 7, Pagakrong Lumbiganon 13, Nia Kurniati 14, Nik Khairulddin Nik Yusoff 15, 
+            Dewi Kumara Wati 16, Annette H Sohn 17, Azar Kariminia 1 </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/32589711/" target="_blank">
+                Identification, Management, and Outcomes of Combination Antiretroviral Treatment Failure 
+                in Adolescents With Perinatal Human Immunodeficiency Virus Infection in Asia
+                </a>
+            </h3>
+        </li>      
+
+        <!-- Research 3 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Tavitiya Sudjaritruk 1 2 3, Torsak Bunupuradah 4, Linda Aurpibul 3, Suparat Kanjanavanit 5,
+             Tawalchaya Chotecharoentanan 3, Natthanidnan Sricharoen 2, Pradthana Ounchanum 6, Piyarat Suntarattiwong 7, 
+            Krittaporn Pornpaisalsakul 8, Thanyawee Puthanakit 8 9; CAL-D Study Group </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/34125899/" target="_blank">
+                Impact of Vitamin D and Calcium Supplementation on Bone Mineral Density and Bone Metabolism Among 
+                Thai Adolescents With Perinatally Acquired Human Immunodeficiency Virus (HIV) Infection: A Randomized Clinical Trial
+                </a>
+            </h3>
+            <p class="journal">
+                <strong>Clinical Infectious Diseases. </strong>73:1555-1564., 2021
+                <br>Impact factor: 8.313 (Q1, JCR)  
+                <br>SCImago: 12.50 (Q1)
+            </p>
+        </li> 
+        <li class="research-card">
+
+            <p class="authors">
+            Tavitiya Sudjaritruk 1 2 3, Linda Aurpibul 3, Wipaporn Natalie Songtaweesin 4, Assawin Narkpongphun 5, 
+            Paul Thisayakorn 6, Tawalchaya Chotecharoentanan 3, Rachaneekorn Nadsasarn 4, Prapaporn Janjing 3, 
+            Chutima Saisaengjan 4, Thanyawee Puthanakit 4 7; Mental Health Study Group </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/34125899/" target="_blank">
+                Integration of mental health services into HIV healthcare facilities among 
+                Thai adolescents and young adults living with HIV
+                </a>
+            </h3>
+            <p class="journal">
+                <strong>Journal of the International AIDS Society.</strong>Volume 24., 2021
+                <br>Impact factor: 5.553 (Q1, JCR)  
+                <br>SCImago: 7.10 (Q1)
+            </p>
+        </li>   
+    </ul>
+</div>         
+    <!-- 2020-->
+<div class="pub-card">
+    <h2 class="year" onclick="toggleList('y2020')">2020</h2>
+
+    <ul id="y2020" class="pub-list">
+
+        <!-- Research 1 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Annette H Sohn 1, Pagakrong Lumbiganon 2, Nia Kurniati 3, Keswadee Lapphra 4, Matthew Law 5, Viet C Do 6, Lam Van Nguyen 7, 
+            Khanh H Truong 8, Dewi K Wati 9, Pradthana Ounchanum 10, Thanyawee Puthanakit 11, Tavitiya Sudjaritruk 12, Penh S Ly 13, 
+            Nik K N Yusoff 14, Sieu M Fong 15, Thahira J Mohamed 16, Revathy Nallusamy 17, Nagalingaswaran Kumarasamy 18, Azar Kariminia 5; for IeDEA Asia-Pacific
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/32443064/" target="_blank">
+                Determining standardized causes of death of infants, children, and adolescents living with HIV in Asia
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>AIDS.</strong>34:1527-1537., 2020
+                <br>Impact factor: 4.499 (Q1, JCR)  
+                <br>SCImago: 7.10 (Q1)
+            </p>
+        </li>
+
+        <!-- Research 2 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Tavitiya Sudjaritruk 1 2, Sirinya Teeraananchai 3 4, Azar Kariminia 5, Keswadee Lapphra 6, Nagalingeswaran Kumarasamy 7, 
+            Moy S Fong 8, Rawiwan Hansudewechakul 9, Torsak Bunupuradah 3, Penh Sun Ly 10, Revathy A Nallusamy 11, Annette H Sohn 12, 
+            Virat Sirisanthana 2; TREAT Asia Pediatric HIV Observational Database of IeDEA Asia-Pacific</p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/32628816/" target="_blank">
+                Impact of low-level viraemia on virological failure among Asian children with perinatally acquired HIV 
+                on first-line combination antiretroviral treatment: a multicentre, retrospective cohort study
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of the International AIDS Society.</strong>Volume 23., 2020
+                <br>Impact factor: 5.192 (Q1, JCR)  
+                <br>SCImago: 6.70 (Q1)
+            </p>
+        </li> 
+        <!-- Research 3 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Linda Aurpibul 1, Sirianong Namwongprom 2, Tavitiya Sudjaritruk 1 3 4, Sakaewan Ounjaijean 1
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/32226033/" target="_blank">
+                Metabolic syndrome, biochemical markers, and body composition in youth living with
+                perinatal HIV infection on antiretroviral treatment
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>PLoS ONE.</strong>Volume 15., 2020
+                <br>Impact factor: 2.776 (Q2, JCR)  
+                <br>SCImago: 5.40 (Q1)
+            </p>
+        </li>         
+        
+        <li class="research-card">
+
+            <p class="authors">
+            Pimpika Hanvatananukul 1, Chanidapa Prasarakee 2, Saowalak Sarachai 3, Linda Aurpibul 4, Kamolrawee Sintupat 5,
+             Ratchaneekorn Khampan 6, Jutamad Saheng 7, Tavitiya Sudjaritruk 8
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/32387447/" target="_blank">
+                Seroprevalence of antibodies against diphtheria, tetanus, and pertussis among healthy Thai adolescents
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Scientific Reports.</strong>Volume 13., 2023
+                <br>Impact factor: 4.997 (Q2, JCR)  
+                <br>SCImago: 6.90 (Q1)
+            </p>
+        </li>       
+    </ul>
+</div> 
+    <!-- 2019-->
+<div class="pub-card">
+    <h2 class="year" onclick="toggleList('y2019')">2019</h2>
+
+    <ul id="y2019" class="pub-list">
+
+        <!-- Research 1 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Adam W Bartlett 1, Thahira Jamal Mohamed 2, Tavitiya Sudjaritruk 3, Nia Kurniati 4, Revathy Nallusamy 5, 
+            Rawiwan Hansudewechakul 6, Penh Sun Ly 7, Khanh Huu Truong 8, Pagakrong Lumbiganon 9, Thanyawee Puthanakit 10, 
+            Kulkanya Chokephaibulkit 11, Lam Van Nguyen 12, Viet Chau Do 13, Nagalingeswaran Kumarasamy 14, Nik Khairulddin Nik Yusoff 15, 
+            Moy Siew Fong 16, Dewi Kumara Wati 17, Annette H Sohn 18, Azar Kariminia 1; TREAT Asia Pediatric HIV Observational Database of IeDEA Asia-Pacific
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/30281549/" target="_blank">
+                Disease- and Treatment-related Morbidity in Adolescents With Perinatal HIV Infection in Asia
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Pediatric Infectious Disease Journal.</strong>38:287-292., 2019
+                <br>Impact factor: 2.305 (Q2, JCR)  
+                <br>SCImago: 4.70 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+            Adam W Bartlett 1, Pagakrong Lumbiganon 2, Thahira A Jamal Mohamed 3, Keswadee Lapphra 4, Dina Muktiarti 5, 
+            Quy Tuan Du 6, Rawiwan Hansudewechakul 7, Penh Sun Ly 8, Khanh Huu Truong 6, Lam Van Nguyen 9, Thanyawee Puthanakit 10 11, 
+            Tavitiya Sudjaritruk 12, Kulkanya Chokephaibulkit 4, Viet Chau Do 13, Nagalingeswaran Kumarasamy 14, Nik Khairulddin Nik Yusoff 15, 
+            Nia Kurniati 5, Moy Siew Fong 16, Dewi Kumara Wati 17, Revathy Nallusamy 18, Annette H Sohn 19, Azar Kariminia 1; 
+            TREAT Asia Pediatric HIV Observational Database of IeDEA Asia-Pacific </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/31714422/" target="_blank">
+                Dual Analysis of Loss to Follow-up for Perinatally HIV-Infected Adolescents Receiving Combination Antiretroviral Therapy in Asia
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Jaids-Journal of Acquired Immune Deficiency Syndromes.</strong> 82:431-438., 2019
+                <br>Impact factor: 4.116 (Q1, JCR)  
+                <br>SCImago: 6.90 (Q1)
+            </p>
+        </li>
+        <li class="research-card">
+
+            <p class="authors">
+            Weiwei Mu 1, Adam W Bartlett 2, Torsak Bunupuradah 3, Kulkanya Chokephaibulkit 4, Nagalingeswaran Kumarasamy 5, 
+            Penh Sun Ly 6, Rawiwan Hansudewechakul 7, Lam Van Nguyen 8, Pagakrong Lumbiganon 9, Tavitiya Sudjaritruk 10, 
+            Thahira A Jamal Mohamed 11, Nik Khairulddin Nik Yusoff 12, Khanh Huu Truong 13, Viet Chau Do 14, Moy Siew Fong 15, 
+            Revathy Nallusamy 16, Nia Kurniati 17, Dewi Kumara Wati 18, Annette H Sohn 19, Azar Kariminia 2, Fujie Zhang 1 20; 
+            TREAT Asia Pediatric HIV Observational Database of IeDEA Asia-Pacific </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/30531299/" target="_blank">
+                Early and Late Virologic Failure After Virologic Suppression in HIV-Infected Asian Children and Adolescents
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Jaids-Journal of Acquired Immune Deficiency Syndromes.</strong> 80:308-315., 2019
+                <br>Impact factor: 4.116 (Q1, JCR)  
+                <br>SCImago: 6.90 (Q1)
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+            Tavitiya Sudjaritruk 1 2, David C Boettiger 3, Lam Van Nguyen 4, Thahira J Mohamed 5, Dewi K Wati 6, Torsak Bunupuradah 7, 
+            Rawiwan Hansudewechakul 8, Penh S Ly 9, Pagakrong Lumbiganon 10, Revathy A Nallusamy 11, Moy S Fong 12, Kulkanya Chokephaibulkit 13, 
+            Nik K Nik Yusoff 14, Khanh H Truong 15, Viet C Do 16, Annette H Sohn 17, 
+            Virat Sirisanthana 2; TREAT Asia Pediatric HIV Observational Database of IeDEA Asia-Pacific </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/31179641/" target="_blank">
+                Impact of the frequency of plasma viral load monitoring on treatment outcomes among children with perinatally acquired HIV
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of the International AIDS Society. </strong> Volume22., 2019
+                <br>Impact factor: 5.135 (Q1, JCR)  
+                <br>SCImago: 5.50 (Q1)
+            </p>
+        </li>        
+
+        <li class="research-card">
+
+            <p class="authors">
+            Tavitiya Sudjaritruk 1 2, Torsak Bunupuradah 3, Linda Aurpibul 2, Pope Kosalaraksa 4, Nia Kurniati 5, Jiratchaya Sophonphan 3, 
+            Panruethai Trinavarat 6, Pannee Visrutaratna 7, Jiraporn Srinakarin 8, Nataruks Chaijitraruch 9, Thanyawee Puthanakit 3 9 10; NAFLD Study Group </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/31856189/" target="_blank">
+                Nonalcoholic fatty liver disease and hepatic fibrosis among perinatally HIV-monoinfected Asian adolescents receiving antiretroviral therapy
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>PLoS ONE.</strong> Volume14., 2019
+                <br>Impact factor: 2.766 (Q1, JCR)  
+                <br>SCImago: 5.70 (Q1)
+            </p>
+        </li>  
+
+        <li class="research-card">
+
+            <p class="authors">
+            Adam W Bartlett 1, Pagakrong Lumbiganon 2, Nia Kurniati 3, Tavitiya Sudjaritruk 4, Thahira J Mohamed 5, Rawiwan Hansudewechakul 6, Penh S Ly 7,
+             Khanh H Truong 8, Thanyawee Puthanakit 9, Lam V Nguyen 10, Kulkanya Chokephaibulkit 11, Viet C Do 12, Nagalingeswaran Kumarasamy 13, Nik Khairulddin Nik Yusoff 14, 
+            Moy S Fong 15, Dewi K Watu 16, Revathy Nallusamy 17, Annette H Sohn 18, Matthew G Law 19; TREAT Asia Pediatric HIV Observational Database of IeDEA Asia-Pacific </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/31395514/" target="_blank">
+                Use and Outcomes of Antiretroviral Monotherapy and Treatment Interruption in Adolescents With Perinatal HIV Infection in Asia
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of Adolescent Health.</strong>65:651-659., 2019
+                <br>Impact factor: 4.098 (Q1, JCR)  
+                <br>SCImago: 7.50 (Q1)
+            </p>
+        </li> 
+    </ul>
+</div>      
+
+    <!-- 2018-->
+<div class="pub-card">
+    <h2 class="year" onclick="toggleList('y2018')">2018</h2>
+
+    <ul id="y2018" class="pub-list">
+
+        <!-- Research 1 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Adam W Bartlett 1, Khan Huu Truong 2, Wipaporn Natalie Songtaweesin 3, Kulkanya Chokephaibulkit 4, 
+            Rawiwan Hansudewechakul 5, Penh Sun Ly 6, Pagakrong Lumbiganon 7, Tavitiya Sudjaritruk 8, Lam Van Nguyen 9, 
+            Viet Chau Do 10, Nagalingeswaran Kumarasamy 11, Nik Khairulddin Nik Yusoff 12, Nia Kurniati 13, Moy Siew Fong 14, 
+            Dewi Kumara Wati 15, Revathy Nallusamy 16, Annette H Sohn 17, Matthew G Law 1, Thahira Jamal Mohamed 18
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/29794827/" target="_blank">
+                Characteristics, mortality and outcomes at transition for adolescents with perinatal HIV infection in Asia
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>AIDS.</strong>32:1689-1697., 2018
+                <br>Impact factor: 5.019 (Q1, JCR)  
+            </p>
+        </li>
+
+        <!-- Research 2 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Thanyawee Puthanakit, Orasri Wittawatmongkol 1, Voraporn Poomlek 1, Tavitiya Sudjaritruk, Chantaphat Brukesawan 1, 
+            Torsak Bunupuradah 2, Sirintip Sricharoenchai 1, Thongsuai Chuanjaroen 2, Wasana Prasitsuebsai 2, Kulkanya Chokephaibulkit 1
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/29568546/" target="_blank">
+                Effect of calcium and vitamin D supplementation on bone mineral accrual among HIV-infected Thai adolescents 
+                with low bone mineral density
+                </a>
+            </h3>
+
+        </li>
+
+        <!-- Research 3 -->
+        <li class="research-card">
+
+            <p class="authors">
+           Natchaya Kunanitthaworn 1, Tinakon Wongpakaran 2, Nahathai Wongpakaran 3, 
+           Salilthip Paiboonsithiwong 1, Natchaphon Songtrijuck 1, Pimolpun Kuntawong 2, Danny Wedding 4 </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/29914462/" target="_blank">
+                Factors associated with motivation in medical education: a path analysis
+                </a>
+            </h3>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+           Deborah Ford 1, Rebecca Turner 1, Anna Turkova 1, Martina Penazzato 2, Victor Musiime 3 4, 
+           Mutsa Bwakura-Dangarembizi 5, Avy Violari 6, Chishala Chabala 7 8, Thanyawee Puthanakit 9, 
+           Tavitiya Sudjaritruk 10 11, Tim R Cressey 12 13 14, Marc Lallemant 12 13, Diana M Gibb 1
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/29994919/" target="_blank">
+                Optimizing Clinical Trial Design to Maximize Evidence Generation in Pediatric HIV
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Jaids-Journal of Acquired Immune Deficiency Syndromes.</strong>32:1689-1697., 2018
+                <br>Impact factor: 3.935 (Q1, JCR)  
+            </p>
+        </li>     
+
+        <li class="research-card">
+            <p class="authors">
+            Deborah Ford 1, Rebecca Turner 1, Anna Turkova 1, Martina Penazzato 2, Victor Musiime 3 4, 
+            Mutsa Bwakura-Dangarembizi 5, Avy Violari 6, Chishala Chabala 7 8, Thanyawee Puthanakit 9, 
+            Tavitiya Sudjaritruk 10 11, Tim R Cressey 12 13 14, Marc Lallemant 12 13, Diana M Gibb 1
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/29994919/" target="_blank">
+                Optimizing Clinical Trial Design to Maximize Evidence Generation in Pediatric HIV
+                </a>
+            </h3>
+            <p class="journal">
+                <strong>Jaids-Journal of Acquired Immune Deficiency Syndromes.</strong>78:S40-S48., 2018
+                <br>Impact factor: 3.935 (Q1, JCR)  
+            </p>
+        </li>    
+    </ul>
+</div>     
+    <!-- 2017-->
+<div class="pub-card">
+    <h2 class="year" onclick="toggleList('y2017')">2017</h2>
+
+    <ul id="y2017" class="pub-list">
+
+        <!-- Research 1 -->
+        <li class="research-card">
+
+            <p class="authors">
+            Tavitiya Sudjaritruk 1 2, Torsak Bunupuradah 3, Linda Aurpibul 2, Pope Kosalaraksa 4, 
+            Nia Kurniati 5, Jiratchaya Sophonphan 3, Jintanat Ananworanich 3 6, Thanyawee Puthanakit 3 7 8; Bone-D study group
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/27786155/" target="_blank">
+                Impact of tenofovir disoproxil fumarate on bone metabolism and bone mass among perinatally HIV-infected Asian adolescents
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Antiviral Therapy.</strong>22:471-479., 2017
+                <br>Impact factor: 2.916 (Q2, JCR)  
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+            Tavitiya Sudjaritruk 1, Linda Aurpibul 2, Penh Sun Ly 3, Thoa Phan Kim Le 4, Torsak Bunupuradah 5, Rawiwan Hansudewechakul 6, 
+            Pagakrong Lumbiganon 7, Kulkanya Chokephaibulkit 8, Nik Khairulddin Nik Yusoff 9, Lam Van Nguyen 10, Kamarul Azahar Mohd Razali 11, 
+            Moy Siew Fong 12, Revathy A Nallusamy 13, Nia Kurniati 14, Viet Chau Do 15, David C Boettiger 16, Annette H Sohn 17, Azar Kariminia 16 
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/28343759/" target="_blank">
+                Incidence of Postsuppression Virologic Rebound in Perinatally HIV-Infected Asian Adolescents on Stable Combination Antiretroviral Therapy
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of Adolescent Health.</strong>61:91-98., 2017
+                <br>Impact factor: 3.838 (Q1, JCR)  
+            </p>
+        </li>
+
+        <li class="research-card">
+
+            <p class="authors">
+            Pope Kosalaraksa 1, David C Boettiger 2, Torsak Bunupuradah 3, Rawiwan Hansudewechakul 4, Sarun Saramony 5, Viet C Do 6, Tavitiya Sudjaritruk 7, 
+            Nik K N Yusoff 8, Kamarul A M Razali 9, Lam V Nguyen 10, Revathy Nallusamy 11, Siew M Fong 12, Nia Kurniati 13, Khanh H Truong 14, Annette H Sohn 15,
+             Kulkanya Chokephaibulkit 16; TREAT Asia Pediatric HIV Observational Database
+            </p>
+            <h3>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/27295973/" target="_blank">
+                Low Risk of CD4 Decline After Immune Recovery in Human Immunodeficiency Virus-Infected Children With Viral Suppression
+                </a>
+            </h3>
+
+            <p class="journal">
+                <strong>Journal of the Pediatric Infectious Diseases Society.</strong>6:173-177. , 2017
+            </p>
+        </li>        
+
+</section>
+
+<script>
+function toggleList(id) {
+    const list = document.getElementById(id);
+    list.style.display = (list.style.display === "none") ? "block" : "none";
+}
+</script>
+
+</body>
+</html>

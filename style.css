@@ -1,0 +1,1322 @@
+/* ให้ header / nav / dropdown ลอยอยู่ด้านบนสุด */
+header, nav, .dropdown-menu {
+    position: relative;
+    z-index: 9999;
+}
+
+/* ตั้งค่าพื้นฐานทั้งหมดของเว็บ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Prompt", sans-serif; /* ฟอนต์ Prompt ทั่วเว็บไซต์ */
+}
+
+/* ตั้งค่าพื้นหลังเว็บ */
+
+body {
+    background: radial-gradient(#e9d5ff, #a7f3d0) !important;
+}
+
+    /* --- MODAL WRAPPER --- */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0; /* shorthand for top left right bottom */
+    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.35);
+    justify-content: center;
+    align-items: center;
+    z-index: 100000 !important;  /* ใช้ค่ามากๆ */
+}
+    /* --- POPUP CARD --- */
+    .modal-content {
+        width: 420px;
+        background: #fff;
+        border-radius: 22px;
+        padding: 25px 35px;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+        position: relative;
+        animation: fadeIn .25s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .close {
+        position: absolute;
+        right: 20px;
+        top: 18px;
+        cursor: pointer;
+        font-size: 22px;
+    }
+
+    /* --- TABS --- */
+    .tabs {
+        display: flex;
+        margin-bottom: 25px;
+        border-radius: 14px;
+        background: #e8e9ff;
+        padding: 4px;
+    }
+    .tab {
+        flex: 1;
+        padding: 12px;
+        text-align: center;
+        border-radius: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .tab.active {
+        background: linear-gradient(135deg, #8f85ff, #6f79ff);
+        color: #fff;
+        box-shadow: 0 3px 10px rgba(111, 121, 255, 0.4);
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid #ccc;
+        margin-top: 6px;
+        font-size: 15px;
+    }
+
+    .password-box {
+        position: relative;
+    }
+
+    .toggle-eye {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    /* --- BUTTON --- */
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        margin-top: 25px;
+        font-size: 16px;
+        color: #fff;
+        border-radius: 12px;
+        cursor: pointer;
+        background: linear-gradient(135deg, #6f79ff, #8f85ff);
+        box-shadow: 0 4px 15px rgba(111, 121, 255, 0.4);
+    }
+body {
+    background: #f8f8f8;
+}
+
+/* Top Bar */
+.top-bar {
+    background: #4A2C82;
+    color: white;
+    padding: 25px 45px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    align-items: center;
+}
+
+/* ปุ่มด้านขวา */
+.top-bar .right button {
+    margin-left: 10px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ปุ่ม login/register */
+.btn-primary {
+    background: #ffffff;
+    color: #4A2C82;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btn-primary:hover {
+    background: #e9dbff;
+}
+
+.lang {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.lang:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.top-bar .lang:hover {
+    background: #e9dbff;
+}
+header {
+    background: #0B6149;
+    padding: 6px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.top-bar,
+nav,
+header,
+.navbar {
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* Logo */
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 6px 0;
+}
+
+.logo-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.logo-round {
+    width: 180px;
+    padding: 6px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-round img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Menu */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+nav .search {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Hero */
+
+.heroSwiper {
+    width: 100%;
+    height: 70%;
+}
+
+.heroSwiper .swiper-slide {
+    width: 100%;
+    height: 70%;
+}
+
+.hero-img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+.heroSwiper,
+.hero-img,
+.heroSwiper .swiper-slide {
+    position: relative;
+    z-index: 1;
+}
+.search-bar {
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 0;
+}
+
+.search-bar input {
+    width: 220px; /* ปรับขนาดให้พอดี */
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: 2px solid #54a3bc;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background: #54a3bc;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.search-icon {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+/* === ABOUT SECTION (NEW DESIGN) === */
+.about {
+    display: flex;
+    padding: 70px 80px;
+    gap: 50px;
+    border-radius: 25px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+/* LEFT SIDE (TEXT) */
+.about-left {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.about-left h2 {
+    font-size: 35px;
+    font-weight: 700;
+    color: #003d6a;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.about-left h2::after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 4px;
+    background: #003d6a;
+    bottom: -8px;
+    left: 0;
+    border-radius: 2px;
+}
+
+.about-left h3 {
+    font-size: 22px;
+    color: #005d8e;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.about-left p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #444;
+    text-align: justify;
+}
+
+/* RIGHT SIDE (IMAGE) */
+.about-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+}
+
+.about-right img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 22px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+.about-right img {
+    transition: transform 0.4s ease;
+}
+
+.about-right img:hover {
+    transform: scale(1.03);
+}
+/*สำหรับมือถือ*/ 
+@media (max-width: 768px) {
+
+    .about {
+        flex-direction: column;
+        padding: 40px 25px;
+        gap: 30px;
+    }
+
+    .about-left h2 {
+        font-size: 28px;
+    }
+
+    .about-left h3 {
+        font-size: 20px;
+    }
+
+    .about-left p {
+        font-size: 16px;
+    }
+
+    .about-right img {
+        height: 300px;
+    }
+}
+
+/*service*/ 
+
+.services {
+    margin-top: 25px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    width: 190px;
+    padding: 20px 18px;
+    border-radius: 18px;
+    background: #ffffff;
+    text-align: center;
+    transition: 0.3s ease;
+    border: 3px solid transparent; /* ให้สีมาโชว์สวย */
+}
+
+/* ✨ กรอบแบบ soft */
+.service-card.fancy {
+    background: linear-gradient(145deg, #ffffff, #f6faff);
+    box-shadow: 
+        4px 4px 12px rgba(0,0,0,0.12),
+        -4px -4px 12px rgba(255,255,255,0.7);
+}
+
+/* hover ให้สวยขึ้น */
+.service-card.fancy:hover {
+    transform: translateY(-6px);
+    box-shadow: 
+        8px 8px 20px rgba(0,0,0,0.18),
+        -6px -6px 18px rgba(255,255,255,0.9);
+}
+
+.color1 { border-color: #8dd1b4; }
+.color1 .icon-circle { background: #e5f7f0; }
+
+.color2 { border-color: #b19cd8; }
+.color2 .icon-circle { background: #f0e9fb; }
+
+.color3 { border-color: #f4b4d9; }
+.color3 .icon-circle { background: #fde9f3; }
+
+.service-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #003d6a;
+    margin-bottom: 6px;
+}
+
+.service-card p {
+    margin : 0;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Wrapper บังคับแนวนอน */
+/* --- Swiper Wrapper --- */
+.swiper-wrapper {
+    display: flex !important;
+}
+
+
+/* --- Slide Box : Text Left + Image Right --- */
+.slide-box {
+    display: grid;
+    grid-template-columns: 1fr 40%;   /* ซ้าย 60% ขวา 40% */
+    align-items: center;
+    background: #003d6a;
+    padding: 40px;
+    color: white;
+    gap: 30px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+
+
+/* --- Left Content (Text + Button) --- */
+.slide-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.slide-left h2 {
+    font-size: 26px;
+    margin: 0;
+}
+
+.slide-left p {
+    line-height: 1.6;
+}
+
+
+/* --- Read More Button --- */
+.read-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: white;
+    color: #003d6a;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    width: fit-content;
+}
+
+
+/* --- Image Right Side --- */
+.slide-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+
+/* --- For Mobile (Stack Vertical) --- */
+@media (max-width: 768px) {
+    .slide-box {
+        grid-template-columns: 1fr;
+    }
+
+    .slide-img {
+        height: 400px;
+        width: 100%;
+    }
+}
+
+/* เลย์เอาต์เป็นแถวเดียว */
+.info-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 0;
+}
+
+/* กล่อง */
+.info-card {
+    padding: 60px 40px;
+    color: white;
+    text-align: center;
+    font-family: "Prompt", sans-serif;
+    width: 100%;
+}
+
+/* สี */
+.pink { background-color: #C5D6BA; }
+.teal { background-color: #D6C3CE; }
+.lightpink { background-color: #F5E3CB; }
+
+/* ปุ่ม */
+.btn-read,
+.btn-learn {
+    display: inline-block;
+    margin-top: 20px;
+    background: white;
+    color: #009688;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid white;
+}
+
+.btn-read:hover,
+.btn-learn:hover {
+    background: #ffe6ef;
+}
+
+/* section ด้านล่าง */
+.public-section .blue {
+    background-color: #84BAC9;
+    color: white;
+    padding: 60px 40px;
+    text-align: center;
+} 
+.icon-card {
+    background: #d8f2fa;        /* ฟ้าอ่อนโทนเว็บ */
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+.icon-card:hover {
+    background: #c3e8f5;        /* hover ฟ้าเข้มนิด */
+}
+
+/* ===== NEWS & EVENTS ===== */
+
+.news-section {
+    width: 100%;
+    padding: 60px 0;
+    text-align: center;
+    font-family: "Prompt", sans-serif;
+}
+
+.news-title {
+    font-size: 32px;
+    color: #003d6a;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.news-grid {
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.news-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding-bottom: 25px;
+    transition: transform 0.2s;
+}
+
+.news-card:hover {
+    transform: translateY(-8px);
+}
+
+.news-card img {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+}
+
+.news-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 20px 0 10px;
+    color: #3E3E3E;
+}
+
+.news-card p {
+    color: #555;
+    padding: 0 20px;
+}
+
+.news-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: lightcyan;
+    color: #003d6a;
+    padding: 8px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.news-btn:hover {
+    background: lightcyan;
+}
+
+.contact-section {
+    background: #4A2C82;
+    padding: 60px 0;
+    font-family: "Prompt", sans-serif;
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    gap: 40px;
+}
+
+.contact-form {
+    flex: 1;
+    background: #4A2C82;
+    border-radius: 20px;
+    padding: 30px;
+    color: white;
+    border: 3px solid white;
+}
+
+.contact-form h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+}
+
+.file-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.file-text {
+    flex: 1;
+}
+
+.file-btn {
+    background: #D8BFD8;
+    padding: 15px 15px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+textarea {
+    height: 120px;
+    border-radius: 15px !important;
+    resize: none;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #D8BFD8;
+    color: white;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: lightblue;
+}
+
+.contact-info {
+    flex: 1;
+    color: white;
+    padding-top: 40px;
+}
+
+.contact-info h3 {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.social-icons img {
+    width: 40px;
+    margin-right: 15px;
+}
+
+.contact-logo {
+    margin-top: 20px;
+    width: 180px;
+}
+
+/*fashcard*/
+.quiz-section {
+    padding-top: 25px;   /*← เผื่อหัวข้อไม่ติดส่วนก่อนหน้านี้ */
+}
+.quiz-icontitle {
+    margin: 0 auto;        /* ← ทำให้ centered */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quiz-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.quiz-card.fancy {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    width: 80%;           /* ← ให้พอดีกับกล่อง Research */
+    max-width: 900px;     /* ← ไม่ให้กว้างเกิน */
+    margin: 20px auto;    /* ← จัดให้อยู่ตรงกลาง */
+
+    padding: 30px 40px;
+    border-radius: 25px;
+
+    background: white;
+    position: relative;
+
+    border: 3px solid transparent;
+    background-image:
+        linear-gradient(rgb(235, 246, 253)),
+        linear-gradient(135deg, #7c4ae8, #39b39c);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.quiz-card.fancy:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+}
+
+.quiz-icon {
+    width: 75px;
+    height: 75px;
+    font-size: 40px;
+    border-radius: 18px;
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* เงาสองด้าน ทำให้กล่องดูนิ่ม */
+    box-shadow: 
+        6px 6px 15px rgba(0,0,0,0.1),
+        
+}
+.quiz-content h3 {
+    text-align: center;
+    font-size: 28px;
+    color: #003d6a;
+    margin-bottom: 20px;
+}
+
+.quiz-content p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 18px;
+}
+
+.quiz-btn {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #7c4ae8, #39b39c);
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: 0.25s;
+}
+
+.quiz-btn:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+    transform: translateY(-3px);
+}
+/*วิจัย*/
+.research-menu {
+    padding: 60px 10%;
+}
+
+.research-menu h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.research-card {
+    display: block;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: #333;
+    transition: 0.25s;
+
+    /* ต้องมีอันนี้! เพื่อให้ border-color ทำงาน */
+    border: 5px solid transparent;
+}
+
+/* สีต่าง ๆ */
+.color1 { border-color: #8dd1b4; }
+.color2 { border-color: #b19cd8; }
+.color3 { border-color: #f4b4d9; }
+.color4 { border-color: #ffd59e; }
+
+.research-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.navbar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.navbar li {
+    margin: 20px;
+}
+.navbar li a {
+    display: block;
+    padding: 14px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* พื้นหลังดำลาง ๆ */
+.top-bar .right a {
+    display: flex;
+    gap: 15px;        /* ระยะห่างระหว่างลิงก์ */
+    align-items: center;
+    color: #ffffff;          /* ขาว → ชัดที่สุด */
+    font-weight: 600;         /* หนาขึ้น → อ่านง่าย */
+    text-decoration: none;
+    transition: 0.25s;
+}
+.top-bar .right li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.top-bar .right a:hover {
+    color: #e8d6ff;           /* ม่วงพาสเทลตอน hover */
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+} 
+
+/* กล่อง login */
+.modal-content {
+    background: #ffffff;
+    width: 500px;
+    max-width: 90%;
+    padding: 40px;
+    margin: 100px auto;
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* ปุ่มปิด (x) */
+.modal .close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #6a3dd2;   /* ม่วงเข้าธีม */
+}
+
+/* หัวข้อ Login/Register */
+.login-title {
+    font-size: 26px;
+    color: #6a3dd2;   /* ← ใช้ม่วงเข้ม อ่านง่าย สวย */
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Input */
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+}
+
+/* Password eye */
+.password-box .toggle-eye {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    cursor: pointer;
+    color: gray;
+}
+
+/* ลืมรหัสผ่าน */
+.forgot {
+    display: block;
+    text-align: right;
+    color: #7c4ae8;   /* ม่วงสวย */
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+/* ปุ่มเข้าสู่ระบบ */
+.login-submit {
+    background: linear-gradient(135deg, #7c4ae8, #39b39c); /* ม่วง-เขียว */
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.login-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(252, 250, 250, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    width: 400px;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+}
+
+.dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: lightskyblue;
+    padding: 0;
+    margin-top: 5px;
+    width: 250px;
+    border-radius: 6px;
+    list-style: none;
+}
+
+.dropdown-menu li {
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px;
+    color: white;
+}
+
+.dropdown-menu li a:hover {
+    background: rgba(0,0,0,0.1);
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+/* ==== POPUP สีสันสวยงาม ==== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 182, 193, 0.35); /* ชมพูโปร่งใส */
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #54a3bc, plum);
+    width: 500px;
+    margin: 8% auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    animation: popupFade 0.35s ease-out;
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+}
+
+/* ปุ่ม X */
+.modal-content .close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.modal-content .close:hover {
+    transform: scale(1.2);
+}
+
+/* ปี */
+#yearTitle {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* เนื้อหา */
+#yearContent {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Animation */
+@keyframes popupFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ปุ่มปีด้านซ้าย */
+.year-btn {
+    display: block;
+    width: 150px;
+    padding: 12px;
+    margin: 8px 0;
+    background: #64d7e7;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.year-btn:hover {
+    background: #45b8cf;
+    transform: translateX(8px);
+}
+
+.hero {
+    width: 100%;
+    height: 350px;      /* ปรับความสูงได้ */
+    overflow: hidden;   /* กันภาพล้น */
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* ทำให้รูปครอบพอดีไม่ทับด้านล่าง */
+}
+
+.quiz-box {
+    background: #c5d9ff;
+    margin-top: 0;       /* ห้ามติดลบ ไม่งั้นโดนรูปทับ */
+    padding: 40px 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    text-align: center;
+    transform: translateY(-40px);  
+    /* ดึงขึ้นเล็กน้อยให้สวยแบบ overlay */
+}
+
+/* personal */
+.personnel-section {
+    padding: 40px 0;
+    background: #0B6149;
+    background-size: cover;
+
+}
+
+.personnel-container {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+}
+.personnel-left{
+    height: 200px;   
+}
+/* ซ้าย - รูปใหญ่ */
+.personnel-left img {
+    width: 50%;
+    height:200px;
+    border-radius: 10px;
+    object-fit: cover;
+
+}
+
+/* ขวา - กล่อง */
+
+.personnel-right h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+}
+
+.personnel-right p {
+    font-size: 18px;
+    color: white;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* ปุ่ม */
+.personnel-btn {
+    background: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    color: #0B6149;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.2s;
+}
+
+.personnel-btn:hover {
+    background: #ffe6ef;
+}
+
+/* submenu */
+
+.has-submenu{
+position:relative;
+}
+
+.submenu{
+display:none;
+position:absolute;
+left:180px;
+top:0;
+background:#5fb8b8;
+min-width:180px;
+border-radius:6px;
+}
+
+.submenu li{
+list-style:none;
+}
+
+.submenu a{
+display:block;
+padding:10px;
+color:white;
+text-decoration:none;
+}
+
+.has-submenu:hover .submenu{
+display:block;
+}
+
+.alumni-hero {
+    background: linear-gradient(135deg,#98c6ff,#b4d1f7);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.alumni-hero h1 {
+    font-size: 48px;
+    color: #0a2e5c;
+    margin-bottom: 10px;
+}
+
+.alumni-hero p {
+    color: #3c4a5c;
+    font-size: 18px;
+}
+
+/* ปุ่ม Alumni */
+.btn-alumni{
+    display: inline-block;
+    background: linear-gradient(90deg, #1d4764, #6ac6ff);
+    padding: 12px 26px;
+    gap : 15;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+
+    box-shadow: 0 6px 15px rgba(76,158,217,0.35);
+    transition: 0.3s ease;
+}
+
+.btn-alumni:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(76,158,217,0.45);
+}
