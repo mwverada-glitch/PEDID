@@ -485,11 +485,16 @@ nav .search {
 
 
 /* --- Left Content (Text + Button) --- */
-.slide-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
+.slide-left{
+    flex:0 0 48%;
+}
+
+.slide-img{
+    flex:0 0 50%;
+    width:50%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
 }
 
 .slide-left h2 {
@@ -517,10 +522,13 @@ nav .search {
 
 /* --- Image Right Side --- */
 .slide-img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 16px;
+    width: 40%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+    background: #003d6a; /* สีพื้นหลังเวลารูปไม่เต็ม */
 }
 
 
